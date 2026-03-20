@@ -1,0 +1,170 @@
+{
+  "0": {
+    "1": {
+      "n_instances": 1,
+      "mean_H1_total_persistence": 1.0,
+      "mean_H1_n_bars": 1.0,
+      "mean_n_solutions": 7.0
+    },
+    "2": {
+      "n_instances": 1,
+      "mean_H1_total_persistence": 525.0,
+      "mean_H1_n_bars": 472.0,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "1": {
+    "0": {
+      "n_instances": 1,
+      "mean_H1_total_persistence": 10.0,
+      "mean_H1_n_bars": 7.0,
+      "mean_n_solutions": 22.0
+    },
+    "1": {
+      "n_instances": 3,
+      "mean_H1_total_persistence": 421.0,
+      "mean_H1_n_bars": 392.0,
+      "mean_n_solutions": 474.6666666666667
+    },
+    "2": {
+      "n_instances": 3,
+      "mean_H1_total_persistence": 428.0,
+      "mean_H1_n_bars": 395.3333333333333,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "2": {
+    "0": {
+      "n_instances": 2,
+      "mean_H1_total_persistence": 8.0,
+      "mean_H1_n_bars": 2.0,
+      "mean_n_solutions": 6.0
+    },
+    "1": {
+      "n_instances": 5,
+      "mean_H1_total_persistence": 577.6,
+      "mean_H1_n_bars": 515.2,
+      "mean_n_solutions": 1000.0
+    },
+    "2": {
+      "n_instances": 5,
+      "mean_H1_total_persistence": 401.2,
+      "mean_H1_n_bars": 378.2,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "3": {
+    "0": {
+      "n_instances": 20,
+      "mean_H1_total_persistence": 58.2,
+      "mean_H1_n_bars": 19.5,
+      "mean_n_solutions": 18.4
+    },
+    "1": {
+      "n_instances": 20,
+      "mean_H1_total_persistence": 560.95,
+      "mean_H1_n_bars": 477.85,
+      "mean_n_solutions": 1000.0
+    },
+    "2": {
+      "n_instances": 20,
+      "mean_H1_total_persistence": 377.8,
+      "mean_H1_n_bars": 335.3,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "4": {
+    "0": {
+      "n_instances": 34,
+      "mean_H1_total_persistence": 371.70588235294116,
+      "mean_H1_n_bars": 151.73529411764707,
+      "mean_n_solutions": 130.58823529411765
+    },
+    "1": {
+      "n_instances": 34,
+      "mean_H1_total_persistence": 405.05882352941177,
+      "mean_H1_n_bars": 335.29411764705884,
+      "mean_n_solutions": 1000.0
+    },
+    "2": {
+      "n_instances": 34,
+      "mean_H1_total_persistence": 169.0,
+      "mean_H1_n_bars": 143.2941176470588,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "5": {
+    "0": {
+      "n_instances": 75,
+      "mean_H1_total_persistence": 1429.0933333333332,
+      "mean_H1_n_bars": 542.6133333333333,
+      "mean_n_solutions": 668.2666666666667
+    },
+    "1": {
+      "n_instances": 75,
+      "mean_H1_total_persistence": 216.46666666666667,
+      "mean_H1_n_bars": 174.58666666666667,
+      "mean_n_solutions": 1000.0
+    },
+    "2": {
+      "n_instances": 75,
+      "mean_H1_total_persistence": 187.92,
+      "mean_H1_n_bars": 162.13333333333333,
+      "mean_n_solutions": 1000.0
+    }
+  },
+  "6": {
+    "0": {
+      "n_instances": 70,
+      "mean_H1_total_persistence": 289.5571428571429,
+      "mean_H1_n_bars": 123.37142857142857,
+      "mean_n_solutions": 218.44285714285715
+    },
+    "1": {
+      "n_instances": 70,
+      "mean_H1_total_persistence": 222.62857142857143,
+      "mean_H1_n_bars": 186.35714285714286,
+      "mean_n_solutions": 847.1285714285714
+    },
+    "2": {
+      "n_instances": 70,
+      "mean_H1_total_persistence": 206.42857142857142,
+      "mean_H1_n_bars": 180.55714285714285,
+      "mean_n_solutions": 919.1714285714286
+    }
+  },
+  "7": {
+    "0": {
+      "n_instances": 12,
+      "mean_H1_total_persistence": 23.666666666666668,
+      "mean_H1_n_bars": 13.583333333333334,
+      "mean_n_solutions": 26.25
+    },
+    "1": {
+      "n_instances": 12,
+      "mean_H1_total_persistence": 182.5,
+      "mean_H1_n_bars": 160.41666666666666,
+      "mean_n_solutions": 501.5833333333333
+    },
+    "2": {
+      "n_instances": 11,
+      "mean_H1_total_persistence": 161.1818181818182,
+      "mean_H1_n_bars": 141.54545454545453,
+      "mean_n_solutions": 508.1818181818182
+    }
+  },
+  "8": {
+    "0": {
+      "n_instances": 2,
+      "mean_H1_total_persistence": 0.0,
+      "mean_H1_n_bars": 0.0,
+      "mean_n_solutions": 4.0
+    },
+    "2": {
+      "n_instances": 2,
+      "mean_H1_total_persistence": 117.0,
+      "mean_H1_n_bars": 91.5,
+      "mean_n_solutions": 217.5
+    }
+  }
+}

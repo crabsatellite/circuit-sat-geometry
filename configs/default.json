@@ -1,0 +1,9 @@
+{
+    "n": 4,
+    "max_circuit_size": 12,
+    "max_solutions_per_instance": 1000,
+    "tda_subsample": 300,
+    "max_homology_dim": 2,
+    "circuit_size_range_above_min": 2,
+    "random_seed": 42
+}

@@ -1,0 +1,166 @@
+{
+  "r1_encoding_invariance": {
+    "n_instances": 71,
+    "nosym_correlations": {
+      "H0_max_persistence": {
+        "spearman_r": 0.94397,
+        "p_value": 6.103146362161089e-35
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.96249,
+        "p_value": 8.085117221262752e-41
+      },
+      "H0_mean_persistence": {
+        "spearman_r": 0.69001,
+        "p_value": 2.8145589677142894e-11
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.5833,
+        "p_value": 9.389918087781884e-08
+      }
+    },
+    "orig_correlations_matched": {
+      "H0_max_persistence": {
+        "spearman_r": 0.86654,
+        "p_value": 1.6478505279224582e-22
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.77094,
+        "p_value": 3.724774356446269e-15
+      }
+    }
+  },
+  "r2_metric_robustness": {
+    "conn_only": {
+      "H0_max_persistence": {
+        "spearman_r": 0.63575,
+        "p_value": 2.3144676740334258e-23
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.54708,
+        "p_value": 1.5421495526895442e-16
+      },
+      "H1_total_persistence": {
+        "spearman_r": 0.42498,
+        "p_value": 6.558256834734363e-10
+      }
+    },
+    "func_only": {
+      "H0_max_persistence": {
+        "spearman_r": 0.584,
+        "p_value": 3.9695261363905785e-19
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.64041,
+        "p_value": 8.768533311585166e-24
+      },
+      "H1_total_persistence": {
+        "spearman_r": 0.20566,
+        "p_value": 0.004017727313007233
+      }
+    },
+    "binary_conn": {
+      "H0_max_persistence": {
+        "spearman_r": 0.86943,
+        "p_value": 1.0576289528526432e-60
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.81219,
+        "p_value": 8.177067095290108e-47
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.17056,
+        "p_value": 0.01742119870567233
+      }
+    },
+    "weighted_conn2x": {
+      "H0_max_persistence": {
+        "spearman_r": 0.81353,
+        "p_value": 4.419449261815595e-47
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.79944,
+        "p_value": 2.3108818526309153e-44
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.18647,
+        "p_value": 0.00923198238678029
+      }
+    },
+    "weighted_func2x": {
+      "H0_max_persistence": {
+        "spearman_r": 0.87399,
+        "p_value": 4.388993141009868e-62
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.8136,
+        "p_value": 4.2683267429674423e-47
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.14347,
+        "p_value": 0.0459613066614547
+      }
+    },
+    "random_proj_30": {
+      "H0_max_persistence": {
+        "spearman_r": 0.87836,
+        "p_value": 1.846687751898159e-63
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.81969,
+        "p_value": 2.4125239365398757e-48
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.12786,
+        "p_value": 0.07562028203166563
+      }
+    },
+    "original_hamming": {
+      "H0_max_persistence": {
+        "spearman_r": 0.83347,
+        "p_value": 2.3786821113204934e-51
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.82298,
+        "p_value": 4.881991641270092e-49
+      },
+      "H1_total_persistence": {
+        "spearman_r": -0.20882,
+        "p_value": 0.0034772658641723467
+      }
+    }
+  },
+  "r3_null_models": {
+    "r3a_fixed_sample": {
+      "H0_max_persistence": {
+        "spearman_r": 0.8943,
+        "p_value": 1.335870664383171e-54
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.88043,
+        "p_value": 8.553651923449009e-51
+      },
+      "n_instances": 153
+    },
+    "r3b_shuffled": {
+      "H0_max_persistence": {
+        "spearman_r": 0.932,
+        "p_value": 1.4750025984556102e-86
+      },
+      "H0_std_persistence": {
+        "spearman_r": 0.81865,
+        "p_value": 3.980013151177179e-48
+      },
+      "n_instances": 194
+    },
+    "r3c_label_permutation": {
+      "observed_r": 0.8674,
+      "null_mean": 0.00174,
+      "null_std": 0.06885,
+      "null_max_abs_r": 0.22733,
+      "permutation_p": 0.0,
+      "n_permutations": 1000
+    }
+  },
+  "total_time_s": 2842.59
+}

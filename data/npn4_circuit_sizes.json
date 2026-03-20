@@ -1,0 +1,1352 @@
+{
+  "n": 4,
+  "num_classes": 222,
+  "max_circuit_size_found": 8,
+  "size_distribution": {
+    "0": 1,
+    "1": 3,
+    "2": 5,
+    "3": 20,
+    "4": 34,
+    "5": 75,
+    "6": 70,
+    "7": 12,
+    "8": 2
+  },
+  "enum_time_s": 0.4934,
+  "solve_time_s": 743.682,
+  "classes": [
+    {
+      "canonical_tt": 0,
+      "orbit_size": 2,
+      "tt_hex": "0000",
+      "circuit_size": 1
+    },
+    {
+      "canonical_tt": 1,
+      "orbit_size": 32,
+      "tt_hex": "0001",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 3,
+      "orbit_size": 64,
+      "tt_hex": "0003",
+      "circuit_size": 2
+    },
+    {
+      "canonical_tt": 6,
+      "orbit_size": 96,
+      "tt_hex": "0006",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 7,
+      "orbit_size": 192,
+      "tt_hex": "0007",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 15,
+      "orbit_size": 48,
+      "tt_hex": "000f",
+      "circuit_size": 1
+    },
+    {
+      "canonical_tt": 22,
+      "orbit_size": 128,
+      "tt_hex": "0016",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 23,
+      "orbit_size": 128,
+      "tt_hex": "0017",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 24,
+      "orbit_size": 64,
+      "tt_hex": "0018",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 25,
+      "orbit_size": 384,
+      "tt_hex": "0019",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 27,
+      "orbit_size": 384,
+      "tt_hex": "001b",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 30,
+      "orbit_size": 384,
+      "tt_hex": "001e",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 31,
+      "orbit_size": 384,
+      "tt_hex": "001f",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 60,
+      "orbit_size": 96,
+      "tt_hex": "003c",
+      "circuit_size": 2
+    },
+    {
+      "canonical_tt": 61,
+      "orbit_size": 384,
+      "tt_hex": "003d",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 63,
+      "orbit_size": 192,
+      "tt_hex": "003f",
+      "circuit_size": 2
+    },
+    {
+      "canonical_tt": 105,
+      "orbit_size": 32,
+      "tt_hex": "0069",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 107,
+      "orbit_size": 128,
+      "tt_hex": "006b",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 111,
+      "orbit_size": 192,
+      "tt_hex": "006f",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 126,
+      "orbit_size": 64,
+      "tt_hex": "007e",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 127,
+      "orbit_size": 128,
+      "tt_hex": "007f",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 255,
+      "orbit_size": 8,
+      "tt_hex": "00ff",
+      "circuit_size": 0
+    },
+    {
+      "canonical_tt": 278,
+      "orbit_size": 32,
+      "tt_hex": "0116",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 279,
+      "orbit_size": 32,
+      "tt_hex": "0117",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 280,
+      "orbit_size": 192,
+      "tt_hex": "0118",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 281,
+      "orbit_size": 192,
+      "tt_hex": "0119",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 282,
+      "orbit_size": 384,
+      "tt_hex": "011a",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 283,
+      "orbit_size": 384,
+      "tt_hex": "011b",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 286,
+      "orbit_size": 192,
+      "tt_hex": "011e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 287,
+      "orbit_size": 192,
+      "tt_hex": "011f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 300,
+      "orbit_size": 384,
+      "tt_hex": "012c",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 301,
+      "orbit_size": 768,
+      "tt_hex": "012d",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 303,
+      "orbit_size": 384,
+      "tt_hex": "012f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 316,
+      "orbit_size": 384,
+      "tt_hex": "013c",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 317,
+      "orbit_size": 384,
+      "tt_hex": "013d",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 318,
+      "orbit_size": 384,
+      "tt_hex": "013e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 319,
+      "orbit_size": 384,
+      "tt_hex": "013f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 360,
+      "orbit_size": 128,
+      "tt_hex": "0168",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 361,
+      "orbit_size": 128,
+      "tt_hex": "0169",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 362,
+      "orbit_size": 384,
+      "tt_hex": "016a",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 363,
+      "orbit_size": 384,
+      "tt_hex": "016b",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 366,
+      "orbit_size": 384,
+      "tt_hex": "016e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 367,
+      "orbit_size": 384,
+      "tt_hex": "016f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 382,
+      "orbit_size": 128,
+      "tt_hex": "017e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 383,
+      "orbit_size": 64,
+      "tt_hex": "017f",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 384,
+      "orbit_size": 16,
+      "tt_hex": "0180",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 385,
+      "orbit_size": 128,
+      "tt_hex": "0181",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 386,
+      "orbit_size": 96,
+      "tt_hex": "0182",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 387,
+      "orbit_size": 384,
+      "tt_hex": "0183",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 390,
+      "orbit_size": 192,
+      "tt_hex": "0186",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 391,
+      "orbit_size": 384,
+      "tt_hex": "0187",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 393,
+      "orbit_size": 192,
+      "tt_hex": "0189",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 395,
+      "orbit_size": 384,
+      "tt_hex": "018b",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 399,
+      "orbit_size": 192,
+      "tt_hex": "018f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 406,
+      "orbit_size": 128,
+      "tt_hex": "0196",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 407,
+      "orbit_size": 128,
+      "tt_hex": "0197",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 408,
+      "orbit_size": 384,
+      "tt_hex": "0198",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 409,
+      "orbit_size": 384,
+      "tt_hex": "0199",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 410,
+      "orbit_size": 768,
+      "tt_hex": "019a",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 411,
+      "orbit_size": 768,
+      "tt_hex": "019b",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 414,
+      "orbit_size": 384,
+      "tt_hex": "019e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 415,
+      "orbit_size": 384,
+      "tt_hex": "019f",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 424,
+      "orbit_size": 192,
+      "tt_hex": "01a8",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 425,
+      "orbit_size": 384,
+      "tt_hex": "01a9",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 426,
+      "orbit_size": 192,
+      "tt_hex": "01aa",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 427,
+      "orbit_size": 384,
+      "tt_hex": "01ab",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 428,
+      "orbit_size": 768,
+      "tt_hex": "01ac",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 429,
+      "orbit_size": 768,
+      "tt_hex": "01ad",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 430,
+      "orbit_size": 768,
+      "tt_hex": "01ae",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 431,
+      "orbit_size": 768,
+      "tt_hex": "01af",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 444,
+      "orbit_size": 384,
+      "tt_hex": "01bc",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 445,
+      "orbit_size": 384,
+      "tt_hex": "01bd",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 446,
+      "orbit_size": 384,
+      "tt_hex": "01be",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 447,
+      "orbit_size": 192,
+      "tt_hex": "01bf",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 488,
+      "orbit_size": 128,
+      "tt_hex": "01e8",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 489,
+      "orbit_size": 128,
+      "tt_hex": "01e9",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 490,
+      "orbit_size": 384,
+      "tt_hex": "01ea",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 491,
+      "orbit_size": 384,
+      "tt_hex": "01eb",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 494,
+      "orbit_size": 384,
+      "tt_hex": "01ee",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 495,
+      "orbit_size": 192,
+      "tt_hex": "01ef",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 510,
+      "orbit_size": 64,
+      "tt_hex": "01fe",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 828,
+      "orbit_size": 64,
+      "tt_hex": "033c",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 829,
+      "orbit_size": 128,
+      "tt_hex": "033d",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 831,
+      "orbit_size": 32,
+      "tt_hex": "033f",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 854,
+      "orbit_size": 96,
+      "tt_hex": "0356",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 855,
+      "orbit_size": 96,
+      "tt_hex": "0357",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 856,
+      "orbit_size": 384,
+      "tt_hex": "0358",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 857,
+      "orbit_size": 384,
+      "tt_hex": "0359",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 858,
+      "orbit_size": 768,
+      "tt_hex": "035a",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 859,
+      "orbit_size": 768,
+      "tt_hex": "035b",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 862,
+      "orbit_size": 384,
+      "tt_hex": "035e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 863,
+      "orbit_size": 192,
+      "tt_hex": "035f",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 872,
+      "orbit_size": 384,
+      "tt_hex": "0368",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 873,
+      "orbit_size": 384,
+      "tt_hex": "0369",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 874,
+      "orbit_size": 384,
+      "tt_hex": "036a",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 875,
+      "orbit_size": 384,
+      "tt_hex": "036b",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 876,
+      "orbit_size": 768,
+      "tt_hex": "036c",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 877,
+      "orbit_size": 768,
+      "tt_hex": "036d",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 878,
+      "orbit_size": 768,
+      "tt_hex": "036e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 879,
+      "orbit_size": 384,
+      "tt_hex": "036f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 892,
+      "orbit_size": 384,
+      "tt_hex": "037c",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 893,
+      "orbit_size": 384,
+      "tt_hex": "037d",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 894,
+      "orbit_size": 384,
+      "tt_hex": "037e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 960,
+      "orbit_size": 32,
+      "tt_hex": "03c0",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 961,
+      "orbit_size": 384,
+      "tt_hex": "03c1",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 963,
+      "orbit_size": 192,
+      "tt_hex": "03c3",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 965,
+      "orbit_size": 384,
+      "tt_hex": "03c5",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 966,
+      "orbit_size": 384,
+      "tt_hex": "03c6",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 967,
+      "orbit_size": 768,
+      "tt_hex": "03c7",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 975,
+      "orbit_size": 96,
+      "tt_hex": "03cf",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 980,
+      "orbit_size": 384,
+      "tt_hex": "03d4",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 981,
+      "orbit_size": 384,
+      "tt_hex": "03d5",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 982,
+      "orbit_size": 384,
+      "tt_hex": "03d6",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 983,
+      "orbit_size": 384,
+      "tt_hex": "03d7",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 984,
+      "orbit_size": 384,
+      "tt_hex": "03d8",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 985,
+      "orbit_size": 768,
+      "tt_hex": "03d9",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 987,
+      "orbit_size": 384,
+      "tt_hex": "03db",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 988,
+      "orbit_size": 768,
+      "tt_hex": "03dc",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 989,
+      "orbit_size": 384,
+      "tt_hex": "03dd",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 990,
+      "orbit_size": 768,
+      "tt_hex": "03de",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1020,
+      "orbit_size": 96,
+      "tt_hex": "03fc",
+      "circuit_size": 2
+    },
+    {
+      "canonical_tt": 1632,
+      "orbit_size": 24,
+      "tt_hex": "0660",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 1633,
+      "orbit_size": 96,
+      "tt_hex": "0661",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1634,
+      "orbit_size": 192,
+      "tt_hex": "0662",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1635,
+      "orbit_size": 384,
+      "tt_hex": "0663",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1638,
+      "orbit_size": 96,
+      "tt_hex": "0666",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 1639,
+      "orbit_size": 192,
+      "tt_hex": "0667",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1641,
+      "orbit_size": 96,
+      "tt_hex": "0669",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1643,
+      "orbit_size": 192,
+      "tt_hex": "066b",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 1647,
+      "orbit_size": 48,
+      "tt_hex": "066f",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1650,
+      "orbit_size": 384,
+      "tt_hex": "0672",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1651,
+      "orbit_size": 384,
+      "tt_hex": "0673",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1654,
+      "orbit_size": 384,
+      "tt_hex": "0676",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1656,
+      "orbit_size": 384,
+      "tt_hex": "0678",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1657,
+      "orbit_size": 384,
+      "tt_hex": "0679",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1658,
+      "orbit_size": 768,
+      "tt_hex": "067a",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1659,
+      "orbit_size": 384,
+      "tt_hex": "067b",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1662,
+      "orbit_size": 384,
+      "tt_hex": "067e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1680,
+      "orbit_size": 48,
+      "tt_hex": "0690",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1681,
+      "orbit_size": 384,
+      "tt_hex": "0691",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1683,
+      "orbit_size": 384,
+      "tt_hex": "0693",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1686,
+      "orbit_size": 192,
+      "tt_hex": "0696",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1687,
+      "orbit_size": 384,
+      "tt_hex": "0697",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1695,
+      "orbit_size": 48,
+      "tt_hex": "069f",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1712,
+      "orbit_size": 192,
+      "tt_hex": "06b0",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1713,
+      "orbit_size": 768,
+      "tt_hex": "06b1",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1714,
+      "orbit_size": 384,
+      "tt_hex": "06b2",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1715,
+      "orbit_size": 768,
+      "tt_hex": "06b3",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1716,
+      "orbit_size": 384,
+      "tt_hex": "06b4",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1717,
+      "orbit_size": 768,
+      "tt_hex": "06b5",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1718,
+      "orbit_size": 384,
+      "tt_hex": "06b6",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1719,
+      "orbit_size": 384,
+      "tt_hex": "06b7",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1721,
+      "orbit_size": 384,
+      "tt_hex": "06b9",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1725,
+      "orbit_size": 384,
+      "tt_hex": "06bd",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1776,
+      "orbit_size": 96,
+      "tt_hex": "06f0",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1777,
+      "orbit_size": 384,
+      "tt_hex": "06f1",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1778,
+      "orbit_size": 384,
+      "tt_hex": "06f2",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1782,
+      "orbit_size": 96,
+      "tt_hex": "06f6",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1785,
+      "orbit_size": 96,
+      "tt_hex": "06f9",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 1910,
+      "orbit_size": 96,
+      "tt_hex": "0776",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1912,
+      "orbit_size": 192,
+      "tt_hex": "0778",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1913,
+      "orbit_size": 192,
+      "tt_hex": "0779",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 1914,
+      "orbit_size": 384,
+      "tt_hex": "077a",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1918,
+      "orbit_size": 192,
+      "tt_hex": "077e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1968,
+      "orbit_size": 192,
+      "tt_hex": "07b0",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 1969,
+      "orbit_size": 768,
+      "tt_hex": "07b1",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1972,
+      "orbit_size": 768,
+      "tt_hex": "07b4",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 1973,
+      "orbit_size": 384,
+      "tt_hex": "07b5",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 1974,
+      "orbit_size": 768,
+      "tt_hex": "07b6",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 1980,
+      "orbit_size": 384,
+      "tt_hex": "07bc",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 2016,
+      "orbit_size": 96,
+      "tt_hex": "07e0",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 2017,
+      "orbit_size": 384,
+      "tt_hex": "07e1",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 2018,
+      "orbit_size": 384,
+      "tt_hex": "07e2",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 2019,
+      "orbit_size": 384,
+      "tt_hex": "07e3",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 2022,
+      "orbit_size": 192,
+      "tt_hex": "07e6",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 2025,
+      "orbit_size": 192,
+      "tt_hex": "07e9",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 2032,
+      "orbit_size": 192,
+      "tt_hex": "07f0",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 2033,
+      "orbit_size": 192,
+      "tt_hex": "07f1",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 2034,
+      "orbit_size": 384,
+      "tt_hex": "07f2",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 2040,
+      "orbit_size": 192,
+      "tt_hex": "07f8",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 4080,
+      "orbit_size": 12,
+      "tt_hex": "0ff0",
+      "circuit_size": 1
+    },
+    {
+      "canonical_tt": 5736,
+      "orbit_size": 16,
+      "tt_hex": "1668",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5737,
+      "orbit_size": 32,
+      "tt_hex": "1669",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5738,
+      "orbit_size": 128,
+      "tt_hex": "166a",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 5739,
+      "orbit_size": 64,
+      "tt_hex": "166b",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5742,
+      "orbit_size": 192,
+      "tt_hex": "166e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5758,
+      "orbit_size": 128,
+      "tt_hex": "167e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5761,
+      "orbit_size": 32,
+      "tt_hex": "1681",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 5763,
+      "orbit_size": 192,
+      "tt_hex": "1683",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5766,
+      "orbit_size": 192,
+      "tt_hex": "1686",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 5767,
+      "orbit_size": 384,
+      "tt_hex": "1687",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5769,
+      "orbit_size": 128,
+      "tt_hex": "1689",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5771,
+      "orbit_size": 384,
+      "tt_hex": "168b",
+      "circuit_size": 8
+    },
+    {
+      "canonical_tt": 5774,
+      "orbit_size": 384,
+      "tt_hex": "168e",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 5782,
+      "orbit_size": 128,
+      "tt_hex": "1696",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 5783,
+      "orbit_size": 64,
+      "tt_hex": "1697",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5784,
+      "orbit_size": 192,
+      "tt_hex": "1698",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 5785,
+      "orbit_size": 384,
+      "tt_hex": "1699",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 5786,
+      "orbit_size": 768,
+      "tt_hex": "169a",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5787,
+      "orbit_size": 384,
+      "tt_hex": "169b",
+      "circuit_size": 8
+    },
+    {
+      "canonical_tt": 5790,
+      "orbit_size": 192,
+      "tt_hex": "169e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 5801,
+      "orbit_size": 192,
+      "tt_hex": "16a9",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5804,
+      "orbit_size": 384,
+      "tt_hex": "16ac",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 5805,
+      "orbit_size": 384,
+      "tt_hex": "16ad",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 5820,
+      "orbit_size": 384,
+      "tt_hex": "16bc",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 5865,
+      "orbit_size": 64,
+      "tt_hex": "16e9",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 6014,
+      "orbit_size": 32,
+      "tt_hex": "177e",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 6030,
+      "orbit_size": 96,
+      "tt_hex": "178e",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 6038,
+      "orbit_size": 64,
+      "tt_hex": "1796",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 6040,
+      "orbit_size": 384,
+      "tt_hex": "1798",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 6042,
+      "orbit_size": 384,
+      "tt_hex": "179a",
+      "circuit_size": 7
+    },
+    {
+      "canonical_tt": 6060,
+      "orbit_size": 384,
+      "tt_hex": "17ac",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 6120,
+      "orbit_size": 32,
+      "tt_hex": "17e8",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 6375,
+      "orbit_size": 32,
+      "tt_hex": "18e7",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 6625,
+      "orbit_size": 96,
+      "tt_hex": "19e1",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 6627,
+      "orbit_size": 192,
+      "tt_hex": "19e3",
+      "circuit_size": 6
+    },
+    {
+      "canonical_tt": 6630,
+      "orbit_size": 192,
+      "tt_hex": "19e6",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 7128,
+      "orbit_size": 24,
+      "tt_hex": "1bd8",
+      "circuit_size": 5
+    },
+    {
+      "canonical_tt": 7140,
+      "orbit_size": 96,
+      "tt_hex": "1be4",
+      "circuit_size": 4
+    },
+    {
+      "canonical_tt": 7905,
+      "orbit_size": 48,
+      "tt_hex": "1ee1",
+      "circuit_size": 3
+    },
+    {
+      "canonical_tt": 15555,
+      "orbit_size": 8,
+      "tt_hex": "3cc3",
+      "circuit_size": 2
+    },
+    {
+      "canonical_tt": 27030,
+      "orbit_size": 2,
+      "tt_hex": "6996",
+      "circuit_size": 3
+    }
+  ]
+}

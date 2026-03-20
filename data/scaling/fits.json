@@ -1,0 +1,33 @@
+{
+  "linear": {
+    "formula": "C = 0.1513 * D + 2.9119",
+    "R2": 0.706,
+    "AIC": -202.24,
+    "residual_std": 0.6204,
+    "params": {
+      "a": 0.151339,
+      "b": 2.9119
+    }
+  },
+  "logarithmic": {
+    "formula": "C = 2.3070 * ln(D) + -0.8470",
+    "R2": 0.7627,
+    "AIC": -248.44,
+    "residual_std": 0.5575,
+    "params": {
+      "a": 2.307023,
+      "b": -0.847
+    }
+  },
+  "exponential": {
+    "formula": "D = 2.4331 * exp(0.3306 * C)",
+    "R2_logspace": 0.7627,
+    "R2_Dspace": 0.8168,
+    "AIC_logspace": -668.1,
+    "residual_std_D": 2.6961,
+    "params": {
+      "alpha": 2.433051,
+      "beta": 0.330579
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "rf_accuracy": {
+    "mean": 0.856553911205074,
+    "std": 0.0678541547342034,
+    "cv_folds": 5
+  },
+  "feature_importances": {
+    "H0_max_persistence": 0.14890943968445822,
+    "H0_std_persistence": 0.1381794914330309,
+    "H0_mean_persistence": 0.09585546143998316,
+    "H1_total_persistence": 0.08606837961340501,
+    "H1_entropy": 0.06735820417479704,
+    "H1_n_bars": 0.0653667669782393,
+    "H0_total_persistence": 0.047694060065691664,
+    "H1_n_finite": 0.043151598927308875,
+    "H0_entropy": 0.04073629551299338,
+    "H0_n_bars": 0.03087667941540019
+  },
+  "baseline_accuracy": 0.3472222222222222
+}

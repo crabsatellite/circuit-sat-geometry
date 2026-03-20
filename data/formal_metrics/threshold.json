@@ -1,0 +1,8 @@
+{
+  "n_tested": 25,
+  "n_disconnected_d0": 25,
+  "n_giant_d1": 23,
+  "threshold_holds": 23,
+  "conjecture": "C(f) is the maximum circuit size s at which the local-move solution graph G(f,s) is disconnected. At s = C(f)+1, a giant connected component emerges.",
+  "status": "PARTIAL"
+}

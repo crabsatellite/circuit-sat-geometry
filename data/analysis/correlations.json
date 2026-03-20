@@ -1,0 +1,102 @@
+{
+  "H0_betti_mid": {
+    "spearman_r": 0.1388355713701155,
+    "p_value": 0.0414998647275076
+  },
+  "H0_entropy": {
+    "spearman_r": -0.006199949032243279,
+    "p_value": 0.9278164603463099
+  },
+  "H0_max_persistence": {
+    "spearman_r": 0.8673956991131933,
+    "p_value": 8.576369499284189e-67
+  },
+  "H0_mean_persistence": {
+    "spearman_r": 0.7160055619617263,
+    "p_value": 2.999651218010738e-35
+  },
+  "H0_n_bars": {
+    "spearman_r": 0.031422799179727255,
+    "p_value": 0.6460527271373011
+  },
+  "H0_n_finite": {
+    "spearman_r": 0.031422799179727255,
+    "p_value": 0.6460527271373011
+  },
+  "H0_std_persistence": {
+    "spearman_r": 0.8360868533036311,
+    "p_value": 1.0312475884261274e-57
+  },
+  "H0_total_persistence": {
+    "spearman_r": 0.2414852757460155,
+    "p_value": 0.00034142527425321515
+  },
+  "H1_betti_mid": {
+    "spearman_r": -0.29322322505999154,
+    "p_value": 1.180462358872033e-05
+  },
+  "H1_entropy": {
+    "spearman_r": -0.10618105668783712,
+    "p_value": 0.11973590209730632
+  },
+  "H1_max_persistence": {
+    "spearman_r": 0.18383154801389967,
+    "p_value": 0.006744332580658345
+  },
+  "H1_mean_persistence": {
+    "spearman_r": -0.3330171123619108,
+    "p_value": 5.452558986782681e-07
+  },
+  "H1_n_bars": {
+    "spearman_r": -0.09925595497266758,
+    "p_value": 0.14597770248558678
+  },
+  "H1_n_finite": {
+    "spearman_r": -0.09925595497266758,
+    "p_value": 0.14597770248558678
+  },
+  "H1_std_persistence": {
+    "spearman_r": 0.20665807310817602,
+    "p_value": 0.0022683907813035122
+  },
+  "H1_total_persistence": {
+    "spearman_r": -0.12363953988240071,
+    "p_value": 0.06974803767527371
+  },
+  "H2_betti_mid": {
+    "spearman_r": 0.185295470996603,
+    "p_value": 0.006311068675328353
+  },
+  "H2_entropy": {
+    "spearman_r": 0.19443305319512322,
+    "p_value": 0.004125342060079332
+  },
+  "H2_max_persistence": {
+    "spearman_r": 0.2622712846112883,
+    "p_value": 9.590623267388447e-05
+  },
+  "H2_mean_persistence": {
+    "spearman_r": 0.10476466904333061,
+    "p_value": 0.12478068624339218
+  },
+  "H2_n_bars": {
+    "spearman_r": 0.20161052539191965,
+    "p_value": 0.002915695281978661
+  },
+  "H2_n_finite": {
+    "spearman_r": 0.20161052539191965,
+    "p_value": 0.002915695281978661
+  },
+  "H2_std_persistence": {
+    "spearman_r": 0.3827492804648197,
+    "p_value": 6.042715787461384e-09
+  },
+  "H2_total_persistence": {
+    "spearman_r": 0.1872825914264951,
+    "p_value": 0.005762792745920383
+  },
+  "n_solutions": {
+    "spearman_r": 0.05475162538825454,
+    "p_value": 0.42335580365531256
+  }
+}
