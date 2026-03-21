@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最小零件的秘密 | The Secret of Minimum Parts</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f5f5f7;color:#333;line-height:1.8}
+body.lang-en .zh{display:none}
+body.lang-zh .en{display:none}
+
+header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:48px 24px 44px;text-align:center}
+header h1{font-size:28px;margin-bottom:12px;font-weight:700;letter-spacing:1px}
+header p{font-size:16px;opacity:0.8;max-width:520px;margin:0 auto}
+.lang-sw{position:absolute;top:16px;right:24px;display:flex;gap:2px;background:rgba(255,255,255,.12);border-radius:6px;overflow:hidden}
+.lang-sw button{padding:5px 14px;background:transparent;border:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;font-family:inherit}
+.lang-sw button.active{background:rgba(255,255,255,.18);color:#ffd700}
+
+main{max-width:780px;margin:0 auto;padding:24px 16px}
+
+.card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:32px;margin-bottom:24px}
+.card h2{font-size:20px;color:#1a1a2e;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #ffd700;display:inline-block}
+.card p{font-size:15px;margin-bottom:12px;color:#555}
+.card b{color:#333}
+.highlight{background:#fff8e1;border-left:4px solid #ffd700;padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;line-height:1.8}
+.key-point{background:#e8f5e9;border-left:4px solid #4CAF50;padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;line-height:1.8}
+.think-box{background:#f3e5f5;border-left:4px solid #ab47bc;padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;line-height:1.8;cursor:pointer;user-select:none}
+.think-box .answer{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed #ce93d8}
+.think-box.open .answer{display:block}
+
+/* Gate demos */
+.gate-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.gate-box{background:#f8f9fa;border-radius:12px;padding:16px 20px;text-align:center;min-width:150px;flex:1;max-width:200px}
+.gate-box h3{font-size:15px;color:#1a1a2e;margin-bottom:2px}
+.gate-box .desc{font-size:12px;color:#888;margin-bottom:10px}
+.gate-toggle{display:flex;gap:8px;justify-content:center;margin:10px 0 8px}
+.sw{padding:6px 14px;border:2px solid #ddd;border-radius:20px;background:#f5f5f5;font-size:13px;cursor:pointer;transition:all .25s;font-family:inherit;user-select:none}
+.sw[data-v="1"]{background:#66bb6a;color:#fff;border-color:#4caf50;font-weight:600}
+.gate-output{font-size:15px;font-weight:700;text-align:center;padding:6px;border-radius:8px;transition:all .3s}
+.gate-output.on{background:#e8f5e9;color:#2e7d32}
+.gate-output.off{background:#f5f5f5;color:#bbb}
+
+/* Circuit builder */
+.circuit-builder{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:20px;margin:20px 0}
+.cb-row{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0;flex-wrap:wrap}
+.cb-select{padding:6px 12px;border:2px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;cursor:pointer;background:#fff}
+.cb-select:focus{border-color:#ffd700;outline:none}
+.cb-truth{margin:12px auto;border-collapse:collapse;font-size:13px;font-family:'Courier New',monospace}
+.cb-truth th,.cb-truth td{padding:4px 10px;border:1px solid #eee;text-align:center}
+.cb-truth th{background:#f5f5f5;font-weight:600;color:#666}
+.cb-truth .on{color:#2e7d32;font-weight:700}
+.cb-truth .off{color:#ccc}
+
+/* Rewire demo */
+.rewire-box{background:#fafafa;border:1px solid #eee;border-radius:12px;padding:20px;margin:20px 0;text-align:center}
+.rewire-gates{display:flex;justify-content:center;gap:8px;margin:12px 0}
+.rg-btn{padding:8px 16px;border:2px solid #ddd;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;background:#fff;transition:all .2s}
+.rg-btn.active{border-color:#1565c0;background:#e3f2fd;color:#1565c0;font-weight:600}
+.rg-btn:hover{border-color:#aaa}
+.rewire-result{margin-top:12px;font-size:14px;padding:10px;border-radius:8px;transition:all .3s}
+.rewire-result.ok{background:#e8f5e9;color:#2e7d32}
+.rewire-result.broken{background:#ffebee;color:#c62828}
+
+/* Mermaid */
+.mermaid-wrap{display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin:16px 0}
+.mermaid-wrap>div{flex:1;min-width:200px;max-width:340px}
+.mermaid-wrap .label{text-align:center;font-size:13px;color:#888;margin-bottom:4px}
+.mermaid-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:#ccc;padding:0 8px}
+
+/* Toggle */
+.toggle-row{display:flex;justify-content:center;gap:4px;margin:16px 0}
+.toggle-btn{padding:10px 24px;border:2px solid #ddd;border-radius:8px;background:#fff;font-size:14px;cursor:pointer;transition:all .3s;font-family:inherit}
+.toggle-btn.active{border-color:#ffd700;background:#fff8e1;color:#c79100;font-weight:600}
+.toggle-btn:hover{border-color:#aaa}
+
+/* Swap demo */
+.swap-demo{background:#fafafa;border:1px solid #eee;border-radius:14px;padding:24px 24px 16px;margin:20px 0}
+.swap-board{position:relative;margin:20px auto 16px;height:80px}
+.swap-slot{position:absolute;top:0;width:72px;height:72px;border:2px dashed #d0d0d0;border-radius:12px;background:#fff}
+.swap-slot.empty{background:repeating-linear-gradient(45deg,#fafafa,#fafafa 4px,#f0f0f0 4px,#f0f0f0 8px);border-color:#bbb}
+.swap-item{position:absolute;top:4px;width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;z-index:2;transition:left .5s cubic-bezier(.4,0,.2,1),box-shadow .3s,transform .3s;cursor:default;user-select:none}
+.swap-item.moving{box-shadow:0 8px 24px rgba(0,0,0,.18);transform:translateY(-4px)}
+@keyframes swapShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.swap-item.stuck{animation:swapShake .5s ease}
+.swap-status{text-align:center;font-size:14px;min-height:22px;margin:12px 0;color:#555;line-height:1.6}
+.swap-status.fail{color:#c62828;font-weight:600}
+.swap-status.ok{color:#2e7d32}
+.swap-status.done{color:#1565c0;font-weight:600}
+.swap-controls{display:flex;align-items:center;justify-content:center;gap:6px}
+.swap-ctrl-btn{padding:7px 14px;border:2px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-family:inherit;font-size:13px;transition:all .2s}
+.swap-ctrl-btn:hover:not(:disabled){border-color:#999}
+.swap-ctrl-btn:disabled{opacity:.3;cursor:default}
+.swap-step-ind{font-size:12px;color:#999;min-width:44px;text-align:center}
+.swap-goal{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px;font-size:12px;color:#999}
+.swap-goal-block{width:32px;height:32px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
+
+/* Circuit animation */
+.ca-wrap{background:#fafafa;border:1px solid #eee;border-radius:14px;padding:24px 16px 16px;margin:20px 0;text-align:center}
+.ca-phase{font-size:15px;font-weight:600;margin-bottom:4px;min-height:26px;color:#1a1a2e}
+.ca-strip{display:flex;justify-content:center;gap:6px;margin:16px 0;min-height:60px;flex-wrap:nowrap}
+.ca-gate{width:54px;height:54px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;transition:background .35s,box-shadow .3s,transform .3s,opacity .4s;user-select:none}
+.ca-gate.buffer{border:2px dashed #ccc;background:transparent !important;color:#bbb;font-size:18px}
+.ca-gate.fail{box-shadow:0 0 0 3px #ef5350;transform:scale(1.08)}
+.ca-gate.ok{box-shadow:0 0 0 3px #66bb6a;transform:scale(1.08)}
+.ca-step{font-size:14px;min-height:24px;margin:10px 0 6px;color:#555;line-height:1.5}
+.ca-replay{display:none;margin:6px auto 0;font-size:12px;color:#999;cursor:pointer;background:none;border:1px solid #ddd;border-radius:6px;padding:4px 14px;font-family:inherit;transition:border-color .2s}
+.ca-replay:hover{border-color:#999}
+
+/* Waffle */
+.waffle-grid{display:grid;grid-template-columns:repeat(15,1fr);gap:3px;max-width:480px;margin:16px auto}
+.waffle-cell{aspect-ratio:1;border-radius:3px;cursor:default;transition:background-color .4s,transform .25s}
+.waffle-cell:hover{opacity:0.75;transform:scale(1.3);z-index:1}
+.waffle-cell.pop{animation:pop .35s ease}
+.waffle-cell.connected{background:#66bb6a}
+.waffle-cell.disconnected{background:#ef5350}
+.waffle-cell.trivial{background:#ccc}
+.waffle-cell.empty{background:transparent;pointer-events:none}
+
+.stats-row{display:flex;justify-content:center;gap:40px;margin:20px 0}
+.stat-item{text-align:center}
+.stat-num{font-size:32px;font-weight:700;transition:color .3s}
+.stat-label{color:#999;font-size:12px;margin-top:2px}
+
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
+
+footer{text-align:center;padding:32px 16px;color:#bbb;font-size:12px}
+footer a{color:#666}
+
+@media(max-width:600px){
+  header{padding:40px 16px 36px}
+  header h1{font-size:22px}
+  .card{padding:20px}
+  .gate-row{gap:8px}
+  .gate-box{min-width:120px;padding:12px}
+  .waffle-grid{grid-template-columns:repeat(10,1fr);max-width:320px}
+  .cb-row{gap:6px}
+  .mermaid-wrap{flex-direction:column;align-items:center}
+  .mermaid-arrow{transform:rotate(90deg)}
+  .swap-board{transform:scale(0.82);transform-origin:center top;margin-bottom:0}
+  .ca-gate{width:42px;height:42px;font-size:10px}
+  .ca-strip{gap:4px}
+}
+</style>
+</head>
+<body class="lang-zh">
+
+<header style="position:relative">
+  <div class="lang-sw">
+    <button class="active" onclick="setLang('zh')">中文</button>
+    <button onclick="setLang('en')">EN</button>
+  </div>
+  <h1>
+    <span class="zh">最小零件的秘密</span>
+    <span class="en">The Secret of Minimum Parts</span>
+  </h1>
+  <p>
+    <span class="zh">如果一个电路恰好用了最少的零件，它还能被改造吗？</span>
+    <span class="en">If a circuit uses the bare minimum number of parts, can it still be rewired?</span>
+  </p>
+</header>
+
+<main>
+
+<!-- Section 1: Hook -->
+<div class="card">
+  <h2>
+    <span class="zh">积木的直觉</span>
+    <span class="en">The Building-Block Intuition</span>
+  </h2>
+  <p>
+    <span class="zh">想象你用积木搭了一座桥，恰好用完了最少数量的积木，一块都不多余。</span>
+    <span class="en">Imagine you built a bridge out of blocks, using exactly the minimum number needed, not a single one extra.</span>
+  </p>
+  <p>
+    <span class="zh">现在你想换掉其中一块。桥塌了。每一块都在承重，抽掉任何一块都会散架。</span>
+    <span class="en">Now you try to replace one block. The bridge collapses. Every block is load-bearing; remove any one and the whole thing falls apart.</span>
+  </p>
+  <p>
+    <span class="zh">但如果手边多一块备用积木呢？你可以先把备用的顶上去，再抽掉想换的那块。仅仅一块积木的差别，死板的结构就变灵活了。</span>
+    <span class="en">But what if you had one spare block? You could prop it up first, then swap out the one you want to replace. Just one extra block turns a rigid structure into a flexible one.</span>
+  </p>
+  <div class="highlight">
+    <span class="zh">我们在<b>数字电路</b>（你手机和电脑芯片的基本构造）中发现了同样的现象：用最少零件搭建电路时，结构被完全冻住，一个零件都动不了。多给一点余量，灵活性立刻恢复。电路的基本功能共有 222 种类型，我们逐一验证了这个现象。</span>
+    <span class="en">We found the same phenomenon in <b>digital circuits</b> (the building blocks of every chip in your phone and computer). At the minimum number of parts, the structure is completely frozen, not a single part can be changed. A little extra room, and flexibility returns. There are 222 basic function types, and we verified this across every one.</span>
+  </div>
+</div>
+
+<!-- Section 2: Logic gates -->
+<div class="card">
+  <h2>
+    <span class="zh">逻辑门：电路的最小零件</span>
+    <span class="en">Logic Gates: The Smallest Parts</span>
+  </h2>
+  <p>
+    <span class="zh">数字电路由逻辑门组成。每个门接收两个输入信号（0＝关 或 1＝开），按固定规则输出一个结果。</span>
+    <span class="en">Digital circuits are made of logic gates. Each gate takes two input signals (0 = off, 1 = on) and produces one output by a fixed rule.</span>
+  </p>
+  <p>
+    <span class="zh"><b>点击开关试试看</b>，观察每种门的输出如何变化：</span>
+    <span class="en"><b>Click the switches below</b> and watch how each gate's output changes:</span>
+  </p>
+
+  <div class="gate-row">
+    <div class="gate-box" id="gateAND">
+      <h3>AND</h3>
+      <div class="desc">
+        <span class="zh">两个都开才输出开</span>
+        <span class="en">Both on → on</span>
+      </div>
+      <div class="gate-toggle">
+        <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
+        <button class="sw" onclick="toggleSw(this)" data-v="0">B: <span class="zh">关</span><span class="en">off</span></button>
+      </div>
+      <div class="gate-output off" id="outAND"><span class="zh">结果：0（关）</span><span class="en">Result: 0 (off)</span></div>
+    </div>
+    <div class="gate-box" id="gateOR">
+      <h3>OR</h3>
+      <div class="desc">
+        <span class="zh">有一个开就输出开</span>
+        <span class="en">Either on → on</span>
+      </div>
+      <div class="gate-toggle">
+        <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
+        <button class="sw" onclick="toggleSw(this)" data-v="0">B: <span class="zh">关</span><span class="en">off</span></button>
+      </div>
+      <div class="gate-output off" id="outOR"><span class="zh">结果：0（关）</span><span class="en">Result: 0 (off)</span></div>
+    </div>
+    <div class="gate-box" id="gateXOR">
+      <h3>XOR</h3>
+      <div class="desc">
+        <span class="zh">两个不一样才输出开</span>
+        <span class="en">Different → on</span>
+      </div>
+      <div class="gate-toggle">
+        <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
+        <button class="sw" onclick="toggleSw(this)" data-v="0">B: <span class="zh">关</span><span class="en">off</span></button>
+      </div>
+      <div class="gate-output off" id="outXOR"><span class="zh">结果：0（关）</span><span class="en">Result: 0 (off)</span></div>
+    </div>
+  </div>
+
+  <div class="think-box" onclick="this.classList.toggle('open')">
+    <span class="zh"><b>想一想：</b>AND 和 OR 有什么区别？试试让它们给出不同的输出。（点击展开答案）</span>
+    <span class="en"><b>Think:</b> What's the difference between AND and OR? Try to make them give different outputs. (Click to reveal)</span>
+    <div class="answer">
+      <span class="zh">当 A=0, B=1（或 A=1, B=0）时，OR 输出 1，AND 输出 0。OR 只需要一个「开」就行，AND 需要两个都「开」。</span>
+      <span class="en">When A=0, B=1 (or A=1, B=0), OR outputs 1 while AND outputs 0. OR only needs one "on"; AND needs both.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 2.5: From gates to circuits -->
+<div class="card">
+  <h2>
+    <span class="zh">把门串成电路</span>
+    <span class="en">Chaining Gates into Circuits</span>
+  </h2>
+  <p>
+    <span class="zh">一个门只接收 2 个输入，能力有限。把多个门串联起来，前一个门的输出当作后一个门的输入，就构成了一个<b>电路</b>。</span>
+    <span class="en">A single gate takes only 2 inputs. Chain multiple gates together, feeding one gate's output into the next, and you get a <b>circuit</b>.</span>
+  </p>
+  <p>
+    <span class="zh">例如：先用一个 AND 门处理输入 x1 和 x2，再把结果和 x3 一起送进一个 OR 门。这样整个电路就有了 <b>3 个输入</b>（x1, x2, x3），虽然每个门依然只看 2 个信号。</span>
+    <span class="en">For example: first use an AND gate to process inputs x1 and x2, then feed the result together with x3 into an OR gate. The whole circuit now has <b>3 inputs</b> (x1, x2, x3), even though each gate still only sees 2 signals.</span>
+  </p>
+  <p>
+    <span class="zh">下面你可以亲手搭一个这样的 2 门电路。选择每个门的类型，看看不同搭法会产生什么输出：</span>
+    <span class="en">Below you can build such a 2-gate circuit yourself. Choose each gate's type and see what output different configurations produce:</span>
+  </p>
+
+  <div class="circuit-builder" id="circuitBuilder">
+    <div class="cb-row">
+      <span style="color:#888;font-size:13px">x1, x2 &rarr;</span>
+      <select class="cb-select" id="cbGate1" onchange="updateCircuit()">
+        <option value="AND">AND</option>
+        <option value="OR">OR</option>
+        <option value="XOR">XOR</option>
+      </select>
+      <span style="color:#888;font-size:13px">&rarr; result + x3 &rarr;</span>
+      <select class="cb-select" id="cbGate2" onchange="updateCircuit()">
+        <option value="OR" selected>OR</option>
+        <option value="AND">AND</option>
+        <option value="XOR">XOR</option>
+      </select>
+      <span style="color:#888;font-size:13px">&rarr; output</span>
+    </div>
+    <table class="cb-truth" id="cbTable"></table>
+    <p style="font-size:12px;color:#999;margin-top:8px;text-align:center">
+      <span class="zh">试着换不同的门组合，你会发现不同的搭法产生完全不同的输出模式</span>
+      <span class="en">Try different gate combinations and see how the output pattern changes completely</span>
+    </p>
+  </div>
+
+  <p>
+    <span class="zh"><b>同一组输入，经过不同的门和连法，会得到不同的输出</b>。电路的功能就是它对每种输入组合给出的输出表。</span>
+    <span class="en"><b>The same inputs, through different gates and wirings, produce different outputs.</b> A circuit's function is its complete input-output table.</span>
+  </p>
+  <p>
+    <span class="zh">而且<b>不同的电路可以实现同一个功能</b>，就像从家到学校可以走不同的路。那么问题来了：实现同一个功能，最少需要几个门？</span>
+    <span class="en">And <b>different circuits can produce the same function</b>, just like different routes to the same destination. This raises a question: what is the minimum number of gates needed for a given function?</span>
+  </p>
+</div>
+
+<!-- Section 3: Rewiring -->
+<div class="card">
+  <h2>
+    <span class="zh">能不能逐步改造？</span>
+    <span class="en">Can You Rewire One Gate at a Time?</span>
+  </h2>
+  <p>
+    <span class="zh">假设实现某个功能最少需要 3 个门，而你找到了好几种不同的 3 门电路，连法不同但输出完全一样。</span>
+    <span class="en">Suppose a function requires at least 3 gates, and you've found several different 3-gate circuits that all produce the same output.</span>
+  </p>
+  <p>
+    <span class="zh"><b>能不能每次只动一个门，从一种电路变成另一种？</b></span>
+    <span class="en"><b>Can you transform one circuit into another by changing just one gate at a time?</b></span>
+  </p>
+  <p>
+    <span class="zh">「动一个门」只有两种操作：</span>
+    <span class="en">"Changing one gate" means exactly one of two operations:</span>
+  </p>
+  <ul style="margin:0 0 12px 20px;color:#555;font-size:15px">
+    <li>
+      <span class="zh"><b>换种类</b>：把 AND 门换成 OR 门（接线不变，规则变了）</span>
+      <span class="en"><b>Change type</b>: swap an AND gate for an OR gate (same wiring, different rule)</span>
+    </li>
+    <li>
+      <span class="zh"><b>换接线</b>：某个门原来连着 x1 的信号，把那根线拔掉改接到 x3（种类不变，输入源变了）</span>
+      <span class="en"><b>Change wiring</b>: a gate was connected to x1's signal; unplug that wire and reconnect it to x3 (same gate type, different input source)</span>
+    </li>
+  </ul>
+  <p>
+    <span class="zh">规则：门的<b>数量始终不变</b>，<b>每改一步之后电路必须仍然正确</b>，不能让它在中途出错。</span>
+    <span class="en">The rule: the number of gates <b>stays constant</b>, and the circuit must <b>remain correct after every single step</b>.</span>
+  </p>
+
+  <p>
+    <span class="zh">用刚才的 2 门电路试试。目标功能是 AND→OR 的那张输出表。换一下第一个门的类型，看看电路还能不能正确工作：</span>
+    <span class="en">Try it with the 2-gate circuit. The target is the AND→OR output table. Change the first gate's type and see if the circuit still works:</span>
+  </p>
+
+  <div class="rewire-box">
+    <p style="font-size:13px;color:#888;margin-bottom:8px">
+      <span class="zh">目标：x1 AND x2, 然后结果 OR x3</span>
+      <span class="en">Target: x1 AND x2, then result OR x3</span>
+    </p>
+    <div style="font-size:14px;margin-bottom:8px">
+      <span class="zh">第一个门的类型（点击切换）：</span>
+      <span class="en">First gate type (click to switch):</span>
+    </div>
+    <div class="rewire-gates">
+      <button class="rg-btn active" onclick="setRewire('AND',this)">AND</button>
+      <button class="rg-btn" onclick="setRewire('OR',this)">OR</button>
+      <button class="rg-btn" onclick="setRewire('XOR',this)">XOR</button>
+    </div>
+    <div class="rewire-result ok" id="rewireResult">
+      <span class="zh">AND → OR：输出完全正确！这就是目标电路。</span>
+      <span class="en">AND → OR: Output is completely correct! This is the target circuit.</span>
+    </div>
+    <div style="font-size:12px;color:#999;margin-top:8px" id="rewireDetail"></div>
+  </div>
+
+  <div class="highlight">
+    <span class="zh">只是换了一个门的类型，整个电路的输出就错了。在最少门的情况下，<b>每个门都不可替代</b>，动一个就全坏。这就是"冻住"的含义。</span>
+    <span class="en">Just changing one gate's type broke the entire output. At the minimum gate count, <b>every gate is irreplaceable</b>. Change one and the whole thing breaks. That is "frozen."</span>
+  </div>
+
+  <p>
+    <span class="zh">把改造关系画成图：每种正确的电路画成一个<b>圆点</b>，两种电路之间如果只差一步改动，就连一条<b>线</b>。下面两个电路的结构完全不同：</span>
+    <span class="en">Picture the transformation as a graph: each valid circuit is a <b>dot</b>, and two circuits get a <b>line</b> between them if they differ by just one step. These two circuits have very different structures:</span>
+  </p>
+
+  <div class="mermaid-wrap">
+    <div>
+      <div class="label">
+        <span class="zh">电路 A</span>
+        <span class="en">Circuit A</span>
+      </div>
+      <pre class="mermaid">
+graph LR
+  x1((x1)) --> AND
+  x2((x2)) --> AND
+  AND --> OR
+  x3((x3)) --> OR
+  OR --> out((out))
+  style AND fill:#e3f2fd,stroke:#90caf9
+  style OR fill:#e8f5e9,stroke:#a5d6a7
+      </pre>
+    </div>
+    <div class="mermaid-arrow" style="font-size:16px;color:#999">vs</div>
+    <div>
+      <div class="label">
+        <span class="zh">电路 B</span>
+        <span class="en">Circuit B</span>
+      </div>
+      <pre class="mermaid">
+graph LR
+  x2b((x2)) --> XOR
+  x3b((x3)) --> XOR
+  x1b((x1)) --> AND2[AND]
+  XOR --> AND2
+  AND2 --> out2((out))
+  style XOR fill:#fce4ec,stroke:#ef9a9a
+  style AND2 fill:#e3f2fd,stroke:#90caf9
+      </pre>
+    </div>
+  </div>
+</div>
+
+<!-- Section 4: The Discovery -->
+<div class="card">
+  <h2>
+    <span class="zh">发现：冻住与解冻</span>
+    <span class="en">The Discovery: Frozen and Thawed</span>
+  </h2>
+  <p>
+    <span class="zh">你已经亲手体验了「换一个门就坏掉」的感觉。那如果<b>多给一个门</b>呢？为什么仅仅多一个就能改变一切？</span>
+    <span class="en">Changing one gate breaks everything, as you just saw. What if you <b>add one extra gate</b>? Why should one more gate change anything?</span>
+  </p>
+  <p>
+    <span class="zh">用一个简单的例子来理解。假设你有三个门排成一排，想把前两个的位置互换，但同一时间只能移动一个：</span>
+    <span class="en">Here is a simple example. You have three gates in a row and want to swap the first two, but can only move one at a time:</span>
+  </p>
+
+  <div class="swap-demo">
+    <div class="swap-goal">
+      <span class="zh">目标：</span><span class="en">Goal:</span>
+      <div class="swap-goal-block" style="background:#66bb6a">OR</div>
+      <div class="swap-goal-block" style="background:#5c6bc0">AND</div>
+      <div class="swap-goal-block" style="background:#ffa726">XOR</div>
+    </div>
+    <div class="toggle-row" style="margin-top:8px">
+      <button class="toggle-btn active" id="btnSwap0" onclick="setSwapMode(0)">
+        <span class="zh">没有空位</span><span class="en">No spare slot</span>
+      </button>
+      <button class="toggle-btn" id="btnSwap1" onclick="setSwapMode(1)">
+        <span class="zh">多一个空位</span><span class="en">One spare slot</span>
+      </button>
+    </div>
+    <div class="swap-board" id="swapBoard"></div>
+    <div class="swap-status" id="swapStatus"></div>
+    <div class="swap-controls">
+      <button class="swap-ctrl-btn" id="swapPrevBtn" onclick="swapGo(-1)" disabled>&#9664;</button>
+      <span class="swap-step-ind" id="swapStepInd"></span>
+      <button class="swap-ctrl-btn" id="swapNextBtn" onclick="swapGo(1)">&#9654;</button>
+      <button class="swap-ctrl-btn" id="swapPlayBtn" onclick="swapPlay()">
+        <span class="zh">&#9654;&#9654; 播放</span><span class="en">&#9654;&#9654; Play</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <span class="zh">最少门的数量下，每个位置都被占满，想挪动任何一个都无处可放。但只要<b>多一个空位</b>，就有了腾挪的余地，可以逐步完成重组。</span>
+    <span class="en">At the minimum gate count, every slot is occupied and nothing can move. With <b>just one spare slot</b>, there is room to maneuver, and rearrangement becomes possible.</span>
+  </div>
+
+</div>
+
+<!-- Section 4.5: Freeze vs Thaw process -->
+<div class="card">
+  <h2>
+    <span class="zh">冻住与解冻：完整过程</span>
+    <span class="en">Frozen vs. Thawed: The Full Process</span>
+  </h2>
+  <p>
+    <span class="zh">刚才用 3 个门演示了空位的作用。现在用一个 5 门电路来完整展示「冻住」和「解冻」到底是什么样的：</span>
+    <span class="en">The swap demo showed how a spare slot helps with 3 gates. Now watch the full "frozen" and "thawed" process with a 5-gate circuit:</span>
+  </p>
+  <div class="ca-wrap" id="caWrap">
+    <div class="ca-phase" id="caPhase"></div>
+    <div class="ca-strip" id="caStrip"></div>
+    <div class="ca-step" id="caStep"></div>
+    <button class="ca-replay" id="caReplay" onclick="replayCA()">
+      <span class="zh">&#8634; 再看一遍</span><span class="en">&#8634; Watch again</span>
+    </button>
+  </div>
+  <div class="highlight">
+    <span class="zh">冻住和解冻，只差一个门。</span>
+    <span class="en">Frozen and thawed, one gate apart.</span>
+  </div>
+</div>
+
+<!-- Section 5: Universal pattern -->
+<div class="card">
+  <h2>
+    <span class="zh">全景：222 种功能</span>
+    <span class="en">The Full Picture: 222 Functions</span>
+  </h2>
+  <p>
+    <span class="zh">上面只看了一个功能。总共有多少种不同的功能？</span>
+    <span class="en">We only looked at one function above. How many distinct functions exist?</span>
+  </p>
+
+  <p>
+    <span class="zh">4 个输入各自为 0 或 1，共有：</span>
+    <span class="en">Each of the 4 inputs is 0 or 1, giving:</span>
+  </p>
+  <div class="highlight">2 &times; 2 &times; 2 &times; 2 = <b>16</b>
+    <span class="zh">种输入组合</span>
+    <span class="en">input combinations</span>
+  </div>
+
+  <p>
+    <span class="zh">对每种组合，输出可以独立选 0 或 1。16 个位置，每个位置 2 种选择：</span>
+    <span class="en">For each combination, the output can independently be 0 or 1. That's 16 positions, 2 choices each:</span>
+  </p>
+  <div class="highlight">2<sup>16</sup> = <b>65,536</b>
+    <span class="zh">种可能的功能</span>
+    <span class="en">possible functions</span>
+  </div>
+
+  <p>
+    <span class="zh">但很多功能本质相同，例如：</span>
+    <span class="en">But many functions are identical up to relabeling:</span>
+  </p>
+  <ul style="margin:0 0 12px 20px;color:#555;font-size:15px">
+    <li>
+      <span class="zh">「x1 AND x2」和「x2 AND x1」只是输入换了名字</span>
+      <span class="en">"x1 AND x2" and "x2 AND x1" just swap input names</span>
+    </li>
+    <li>
+      <span class="zh">把一个功能的所有 0 和 1 互换（输入输出全部翻转），得到的功能本质上和原来一样</span>
+      <span class="en">Flipping all 0s and 1s (both inputs and outputs) gives an equivalent function</span>
+    </li>
+  </ul>
+  <p>
+    <span class="zh">把这些本质相同的归为一类后，65,536 种归结为 <b>222 种真正不同的类型</b>。</span>
+    <span class="en">After grouping equivalent functions, 65,536 reduces to <b>222 truly distinct types</b>.</span>
+  </p>
+
+  <div class="think-box" onclick="this.classList.toggle('open')">
+    <span class="zh"><b>想一想：</b>为什么恰好是 222 种？（点击展开）</span>
+    <span class="en"><b>Think:</b> Why exactly 222? (Click to reveal)</span>
+    <div class="answer">
+      <span class="zh">想象一个正方形：旋转 90° 和翻转后它看起来一样，所以这些算同一种。对电路功能也可以做类似的操作——交换输入的顺序、或者把 0 和 1 全部翻转。做完所有这些「对称操作」之后，65,536 种功能合并成了 222 种无法互相转化的类型。</span>
+      <span class="en">Think of a square: after rotating 90° or flipping it, it looks the same, so those count as one shape. We can do similar operations on circuit functions: swap the order of inputs, or flip all 0s and 1s. Once all such "symmetry operations" are applied, 65,536 functions merge into 222 types that cannot be transformed into each other.</span>
+    </div>
+  </div>
+
+  <p>
+    <span class="zh">我们对 222 种类型<b>逐一</b>做了分析。每个小方块代表一种类型，<b>点击按钮看变化</b>：</span>
+    <span class="en">We analyzed all 222 types <b>one by one</b>. Each small square represents one type. <b>Click to toggle</b>:</span>
+  </p>
+  <p style="font-size:13px;margin-bottom:4px">
+    <span style="color:#66bb6a;font-weight:600">
+      <span class="zh">绿色</span><span class="en">Green</span>
+    </span> =
+    <span class="zh">可改造</span><span class="en">rewirable</span>
+    &nbsp;&nbsp;
+    <span style="color:#ef5350;font-weight:600">
+      <span class="zh">红色</span><span class="en">Red</span>
+    </span> =
+    <span class="zh">冻住</span><span class="en">frozen</span>
+    &nbsp;&nbsp;
+    <span style="color:#aaa;font-weight:600">
+      <span class="zh">灰色</span><span class="en">Gray</span>
+    </span> =
+    <span class="zh">太简单（只需 0–1 个门）</span><span class="en">too simple (need 0–1 gates)</span>
+  </p>
+
+  <div class="toggle-row">
+    <button class="toggle-btn active" id="btnWMin" onclick="setWaffle(0)">
+      <span class="zh">最少的门</span><span class="en">Minimum gates</span>
+    </button>
+    <button class="toggle-btn" id="btnWPlus" onclick="setWaffle(1)">
+      <span class="zh">多一个门</span><span class="en">One extra gate</span>
+    </button>
+  </div>
+
+  <div id="waffle" class="waffle-grid"></div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num" id="statG" style="color:#66bb6a">0</div>
+      <div class="stat-label"><span class="zh">可改造</span><span class="en">Rewirable</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="statR" style="color:#ef5350">218</div>
+      <div class="stat-label"><span class="zh">冻住</span><span class="en">Frozen</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="statT" style="color:#aaa">4</div>
+      <div class="stat-label"><span class="zh">太简单</span><span class="en">Too simple</span></div>
+    </div>
+  </div>
+
+  <div class="highlight" id="waffleNote">
+    <span class="zh">排除太简单的 4 种之后，剩下的 218 种在最少门时<b>全部</b>冻住，无一例外。</span>
+    <span class="en">Excluding the 4 simplest types, the remaining 218 are <b>all</b> frozen at minimum gate count, without exception.</span>
+  </div>
+
+  <div class="think-box" onclick="this.classList.toggle('open')">
+    <span class="zh"><b>想一想：</b>切换到「多一个门」后，观察解冻的速度——为什么不是一下子全部解冻？（点击展开）</span>
+    <span class="en"><b>Think:</b> Toggle "one extra gate" and observe the thawing rate: why don't they all thaw at once? (Click to reveal)</span>
+    <div class="answer">
+      <span class="zh">因为<b>解冻所需的余量取决于复杂度</b>。大多数类型的门数在 3–7 之间，电路并不极端拥挤，一个额外的门就足够腾挪，所以 216 种一下子就解冻了（99%）。但最复杂的 2 种类型需要 <b>8 个门</b>（4 输入电路的上限），结构非常紧凑，一个空位不够用，需要两个。复杂度越高，解冻门槛越高。</span>
+      <span class="en">Because <b>the slack needed to thaw depends on complexity</b>. Most types need 3–7 gates, so one extra gate is enough room to maneuver, and 216 types thaw at once (99%). But the 2 most complex types need <b>8 gates</b> (the maximum for 4 inputs), leaving very little room. One spare slot is not enough; they need two. The higher the complexity, the higher the thawing threshold.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 6: So what -->
+<div class="card">
+  <h2>
+    <span class="zh">这意味着什么？</span>
+    <span class="en">What Does This Mean?</span>
+  </h2>
+  <p>
+    <span class="zh">回到开头的积木比喻。你的手机芯片里有几十亿个逻辑门，工程师设计电路时始终面临一个取舍：用更少的门省成本，还是留一些余量换灵活性？</span>
+    <span class="en">Back to the building-block analogy. Your phone's chip contains billions of logic gates, and engineers always face a trade-off: use fewer gates to save cost, or keep some slack for flexibility?</span>
+  </p>
+  <p>
+    <span class="zh">我们的发现给出了明确答案：用最少的门时，218 种功能全部冻住。多一个门，216 种立刻解冻；多两个门，全部解冻。从「全部冻住」到「几乎全部可改造」，只差一个门。</span>
+    <span class="en">Our finding gives a clear answer: at the minimum gate count, all 218 functions are frozen. Add one gate, 216 thaw at once; add two, all of them do. The gap between "all frozen" and "almost all rewirable" is exactly one gate.</span>
+  </p>
+  <div class="key-point">
+    <span class="zh"><b>代价与回报：</b>追求极致精简，系统完全僵死。多一点余量，灵活性立刻回来。功能越简单恢复越快，越复杂需要的余量越多。</span>
+    <span class="en"><b>The trade-off:</b> push to the absolute minimum and the system locks up. A small amount of slack brings flexibility right back. Simpler functions recover faster; complex ones need more room.</span>
+  </div>
+  <p style="font-size:13px;color:#999;margin-top:12px">
+    <span class="zh">以上结论已在全部 222 种 4 输入功能上完整验证。我们还抽样测试了更大的 5 输入电路（约 616,000 种类型），结果一致——这个规律不太可能只是 4 输入的特例。</span>
+    <span class="en">These conclusions have been fully verified across all 222 four-input function types. We also sampled from the much larger set of 5-input circuits (~616,000 types), with consistent results. This pattern is unlikely to be a quirk of 4-input circuits alone.</span>
+  </p>
+</div>
+
+</main>
+
+<footer>
+  A. C. Li &mdash;
+  <span class="zh">小型布尔函数电路-SAT解空间的连通性二分现象</span>
+  <span class="en">A Connectivity Dichotomy in the Solution Space of Circuit-SAT for Small Boolean Functions</span>
+  <br>
+  <a href="https://doi.org/10.5281/zenodo.19132019" target="_blank">Data &amp; Code (Zenodo)</a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/crabsatellite/circuit-sat-geometry" target="_blank">GitHub</a>
+</footer>
+
+<script>
+// ============================================================
+// Language Toggle
+// ============================================================
+function setLang(l){
+  document.body.className='lang-'+l;
+  document.querySelectorAll('.lang-sw button').forEach(function(b){
+    b.classList.toggle('active',b.textContent.trim()===(l==='zh'?'\u4E2D\u6587':'EN'));
+  });
+}
+
+// ============================================================
+// Interactive Gate Demo
+// ============================================================
+function toggleSw(btn){
+  var v=1-(+btn.dataset.v);
+  btn.dataset.v=v;
+  var letter=btn.textContent.trim()[0];
+  btn.innerHTML=letter+': <span class="zh">'+(v?'\u5F00':'\u5173')+'</span><span class="en">'+(v?'on':'off')+'</span>';
+  var box=btn.closest('.gate-box');
+  var btns=box.querySelectorAll('.sw');
+  var a=+btns[0].dataset.v, b=+btns[1].dataset.v;
+  var id=box.id.replace('gate','');
+  var r=0;
+  if(id==='AND') r=a&b;
+  else if(id==='OR') r=a|b;
+  else if(id==='XOR') r=a^b;
+  var out=document.getElementById('out'+id);
+  out.innerHTML='<span class="zh">\u7ED3\u679C\uFF1A'+r+(r?'\uFF08\u5F00\uFF09':'\uFF08\u5173\uFF09')+'</span><span class="en">Result: '+r+(r?' (on)':' (off)')+'</span>';
+  out.className='gate-output '+(r?'on':'off');
+}
+
+// ============================================================
+// Circuit Builder
+// ============================================================
+function gateCalc(type,a,b){
+  if(type==='AND') return a&b;
+  if(type==='OR')  return a|b;
+  if(type==='XOR') return a^b;
+  return 0;
+}
+function updateCircuit(){
+  var g1=document.getElementById('cbGate1').value;
+  var g2=document.getElementById('cbGate2').value;
+  var html='<tr><th>x1</th><th>x2</th><th>x3</th><th>'+g1+'(x1,x2)</th><th>'+g2+'(\u2026,x3)</th></tr>';
+  for(var x1=0;x1<2;x1++)for(var x2=0;x2<2;x2++)for(var x3=0;x3<2;x3++){
+    var mid=gateCalc(g1,x1,x2);
+    var out=gateCalc(g2,mid,x3);
+    html+='<tr><td>'+x1+'</td><td>'+x2+'</td><td>'+x3+'</td>';
+    html+='<td class="'+(mid?'on':'off')+'">'+mid+'</td>';
+    html+='<td class="'+(out?'on':'off')+'"><b>'+out+'</b></td></tr>';
+  }
+  document.getElementById('cbTable').innerHTML=html;
+}
+updateCircuit();
+
+// ============================================================
+// Rewire Demo
+// ============================================================
+var TARGET=[0,1,0,1,0,1,1,1];
+function setRewire(gate,btn){
+  document.querySelectorAll('.rg-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var results=[];
+  for(var x1=0;x1<2;x1++)for(var x2=0;x2<2;x2++)for(var x3=0;x3<2;x3++){
+    var mid=gateCalc(gate,x1,x2);
+    var out=gateCalc('OR',mid,x3);
+    results.push(out);
+  }
+  var match=true, diffs=[];
+  for(var i=0;i<8;i++){if(results[i]!==TARGET[i]){match=false;diffs.push(i);}}
+  var el=document.getElementById('rewireResult');
+  var det=document.getElementById('rewireDetail');
+  if(match){
+    el.className='rewire-result ok';
+    el.innerHTML='<span class="zh">'+gate+' \u2192 OR\uFF1A\u8F93\u51FA\u5B8C\u5168\u6B63\u786E\uFF01\u8FD9\u5C31\u662F\u76EE\u6807\u7535\u8DEF\u3002</span><span class="en">'+gate+' \u2192 OR: Output is completely correct! This is the target circuit.</span>';
+    det.textContent='';
+  }else{
+    el.className='rewire-result broken';
+    el.innerHTML='<span class="zh">'+gate+' \u2192 OR\uFF1A\u7535\u8DEF\u574F\u4E86\uFF018 \u79CD\u8F93\u5165\u4E2D\u6709 <b>'+diffs.length+'</b> \u79CD\u7ED3\u679C\u9519\u8BEF</span><span class="en">'+gate+' \u2192 OR: Broken! <b>'+diffs.length+'</b> of 8 inputs give wrong output</span>';
+    det.innerHTML='<span class="zh">\u8FD9\u5C31\u662F\u300C\u51BB\u4F4F\u300D\u7684\u542B\u4E49\uFF1A\u53EA\u6362\u4E86\u4E00\u4E2A\u95E8\uFF0C\u6574\u4E2A\u7535\u8DEF\u5C31\u4E0D\u518D\u8BA1\u7B97\u539F\u6765\u7684\u529F\u80FD\u4E86\u3002</span><span class="en">This is what "frozen" means: changing just one gate breaks the entire function.</span>';
+  }
+}
+
+// ============================================================
+// Swap Demo — "Why one extra slot changes everything"
+// ============================================================
+var SWAP_ITEMS=[
+  {label:'AND',color:'#5c6bc0'},
+  {label:'OR',color:'#66bb6a'},
+  {label:'XOR',color:'#ffa726'}
+];
+var SWAP_STEPS=[
+  // Mode 0: no buffer (3 slots)
+  [
+    {pos:[0,1,2],zh:'\u76EE\u6807\uFF1A\u628A AND \u548C OR \u4E92\u6362\u4F4D\u7F6E\u3002',en:'Goal: swap AND and OR.',cls:'',hi:-1},
+    {pos:[0,1,2],zh:'\u6240\u6709\u4F4D\u7F6E\u90FD\u6EE1\u4E86\uFF0CAND \u60F3\u8D70\u5374\u65E0\u5904\u53EF\u653E\u3002',en:'All slots full. AND has nowhere to go.',cls:'fail',hi:0,stuck:true}
+  ],
+  // Mode 1: with buffer (4 slots)
+  [
+    {pos:[0,1,2],zh:'\u540C\u6837\u7684\u76EE\u6807\uFF0C\u73B0\u5728\u53F3\u8FB9\u591A\u4E86\u4E00\u4E2A\u7A7A\u4F4D\u3002',en:'Same goal. Now there\u2019s a spare slot on the right.',cls:'',hi:-1},
+    {pos:[3,1,2],zh:'\u628A AND \u6682\u653E\u5230\u7A7A\u4F4D\u3002',en:'Move AND to the spare slot.',cls:'ok',hi:0},
+    {pos:[3,0,2],zh:'AND \u7684\u539F\u4F4D\u7A7A\u4E86\uFF0C\u628A OR \u79FB\u8FC7\u53BB\u3002',en:'AND\u2019s old spot is free. Move OR there.',cls:'ok',hi:1},
+    {pos:[1,0,2],zh:'\u628A AND \u4ECE\u7A7A\u4F4D\u642C\u56DE\u6765\u3002\u4E92\u6362\u5B8C\u6210\uFF01',en:'Move AND back from spare. Swap complete!',cls:'done',hi:0}
+  ]
+];
+var swapMode=0,swapCur=0,_st=[];
+
+function setSwapMode(m){
+  _st.forEach(clearTimeout);_st=[];
+  swapMode=m;swapCur=0;
+  document.getElementById('btnSwap0').classList.toggle('active',m===0);
+  document.getElementById('btnSwap1').classList.toggle('active',m===1);
+  renderSwap();
+}
+function renderSwap(){
+  var board=document.getElementById('swapBoard');
+  var steps=SWAP_STEPS[swapMode],step=steps[swapCur];
+  var ns=swapMode?4:3,sw=72,gap=10,tw=ns*sw+(ns-1)*gap;
+  board.style.width=tw+'px';
+  var h='';
+  for(var s=0;s<ns;s++){
+    var occ=step.pos.indexOf(s)>=0;
+    h+='<div class="swap-slot'+(occ?'':' empty')+'" style="left:'+s*(sw+gap)+'px"></div>';
+  }
+  SWAP_ITEMS.forEach(function(it,i){
+    var sl=step.pos[i];
+    h+='<div class="swap-item" data-idx="'+i+'" style="left:'+(sl*(sw+gap)+4)+'px;background:'+it.color+'">'+it.label+'</div>';
+  });
+  board.innerHTML=h;
+  updateSwapUI(steps);
+}
+function animateSwap(){
+  var board=document.getElementById('swapBoard');
+  var steps=SWAP_STEPS[swapMode],step=steps[swapCur];
+  var sw=72,gap=10;
+  var items=board.querySelectorAll('.swap-item');
+  var slots=board.querySelectorAll('.swap-slot');
+  items.forEach(function(el){el.classList.remove('moving','stuck');});
+  items.forEach(function(el){
+    var i=+el.dataset.idx,sl=step.pos[i];
+    el.style.left=(sl*(sw+gap)+4)+'px';
+    if(step.hi===i){
+      if(step.stuck){void el.offsetWidth;el.classList.add('stuck');}
+      else el.classList.add('moving');
+    }
+  });
+  slots.forEach(function(sl,s){
+    sl.className='swap-slot'+(step.pos.indexOf(s)>=0?'':' empty');
+  });
+  updateSwapUI(steps);
+}
+function updateSwapUI(steps){
+  var step=steps[swapCur];
+  var st=document.getElementById('swapStatus');
+  st.innerHTML='<span class="zh">'+step.zh+'</span><span class="en">'+step.en+'</span>';
+  st.className='swap-status '+step.cls;
+  document.getElementById('swapStepInd').textContent=(swapCur+1)+' / '+steps.length;
+  document.getElementById('swapPrevBtn').disabled=swapCur===0;
+  document.getElementById('swapNextBtn').disabled=swapCur>=steps.length-1;
+}
+function swapGo(dir){
+  var steps=SWAP_STEPS[swapMode],n=swapCur+dir;
+  if(n<0||n>=steps.length)return;
+  swapCur=n;animateSwap();
+}
+function swapPlay(){
+  _st.forEach(clearTimeout);_st=[];
+  if(swapCur>0){swapCur=0;renderSwap();}
+  var steps=SWAP_STEPS[swapMode];
+  for(var i=1;i<steps.length;i++){
+    (function(idx){_st.push(setTimeout(function(){swapCur=idx;animateSwap();},idx*850));})(i);
+  }
+}
+renderSwap();
+
+// ============================================================
+// Circuit Animation — "Frozen vs Thawed process"
+// ============================================================
+var CA_C={AND:'#5c6bc0',OR:'#66bb6a',XOR:'#ffa726'};
+var _ca=[],caPlayed=false;
+
+function caRender(strip,gates,bufferEmpty){
+  var h='';
+  gates.forEach(function(g,i){
+    if(bufferEmpty&&i===gates.length-1){
+      h+='<div class="ca-gate buffer" data-i="'+i+'">+</div>';
+    }else{
+      h+='<div class="ca-gate" data-i="'+i+'" style="background:'+CA_C[g]+'">'+g+'</div>';
+    }
+  });
+  strip.innerHTML=h;
+}
+function caSet(i,type){
+  var g=document.querySelectorAll('#caStrip .ca-gate')[i];
+  if(!g)return;
+  g.style.background=CA_C[type];g.textContent=type;g.classList.remove('buffer');
+}
+function caHL(i,cls){
+  var gs=document.querySelectorAll('#caStrip .ca-gate');
+  gs.forEach(function(g){g.classList.remove('fail','ok');});
+  if(i>=0&&gs[i]){void gs[i].offsetWidth;gs[i].classList.add(cls);}
+}
+
+function playCA(){
+  if(caPlayed)return;caPlayed=true;
+  document.getElementById('caReplay').style.display='none';
+  var strip=document.getElementById('caStrip');
+  var phase=document.getElementById('caPhase');
+  var step=document.getElementById('caStep');
+  var init=['AND','OR','XOR','AND','OR'];
+
+  // === ACT 1: FROZEN ===
+  caRender(strip,init,false);
+  phase.innerHTML='<span class="zh">\u7B2C\u4E00\u5E55\uFF1A\u6700\u5C11\u7684\u95E8</span><span class="en">Act 1: Minimum Gates</span>';
+  step.innerHTML='<span class="zh">\u8FD9\u4E2A\u7535\u8DEF\u7528\u4E86\u6700\u5C11\u7684 5 \u4E2A\u95E8\u3002\u8BD5\u8BD5\u6539\u5176\u4E2D\u4E00\u4E2A\uFF1A</span><span class="en">This circuit uses the minimum 5 gates. Try changing one:</span>';
+
+  var fails=[
+    {i:0,to:'OR',from:'AND',zh:'\u6362\u7B2C 1 \u4E2A\u95E8 AND\u2192OR',en:'Change gate 1: AND\u2192OR'},
+    {i:2,to:'AND',from:'XOR',zh:'\u6362\u7B2C 3 \u4E2A\u95E8 XOR\u2192AND',en:'Change gate 3: XOR\u2192AND'},
+    {i:4,to:'XOR',from:'OR',zh:'\u6362\u7B2C 5 \u4E2A\u95E8 OR\u2192XOR',en:'Change gate 5: OR\u2192XOR'}
+  ];
+  var t=1500;
+  fails.forEach(function(f,fi){
+    // show attempted change
+    _ca.push(setTimeout(function(){
+      caSet(f.i,f.to);caHL(f.i,'fail');
+      step.innerHTML='<span style="color:#c62828;font-weight:600">\u274C <span class="zh">'+f.zh+' \u2192 \u8F93\u51FA\u9519\u4E86\uFF01</span><span class="en">'+f.en+' \u2192 Wrong output!</span></span>';
+    },t+fi*1400));
+    // revert
+    _ca.push(setTimeout(function(){
+      caSet(f.i,f.from);caHL(-1,'');
+    },t+fi*1400+900));
+  });
+
+  // frozen summary
+  var t1=t+fails.length*1400+400;
+  _ca.push(setTimeout(function(){
+    step.innerHTML='<span style="color:#c62828;font-weight:600"><span class="zh">\u8BD5\u4E86 3 \u4E2A\u95E8\uFF0C\u6539\u54EA\u4E2A\u8F93\u51FA\u90FD\u53D8\u9519\u3002\u51BB\u4F4F\u4E86\u3002</span><span class="en">3 gates tested. Every change breaks the output. Frozen.</span></span>';
+  },t1));
+
+  // === ACT 2: THAWED ===
+  var t2=t1+2200;
+  _ca.push(setTimeout(function(){
+    phase.innerHTML='<span class="zh">\u7B2C\u4E8C\u5E55\uFF1A\u591A\u4E00\u4E2A\u95E8</span><span class="en">Act 2: One Extra Gate</span>';
+    var ext=init.concat(['']);
+    caRender(strip,ext,true);
+    step.innerHTML='<span class="zh">\u540C\u6837\u7684\u7535\u8DEF\uFF0C\u73B0\u5728\u53F3\u8FB9\u591A\u4E86\u4E00\u4E2A\u7A7A\u4F4D</span><span class="en">Same circuit, now with a spare slot on the right</span>';
+  },t2));
+
+  var wins=[
+    {i:5,to:'XOR',zh:'\u7A7A\u4F4D\u586B\u5165 XOR',en:'Fill spare with XOR'},
+    {i:2,to:'AND',zh:'\u6539\u7B2C 3 \u4E2A\u95E8 XOR\u2192AND',en:'Change gate 3: XOR\u2192AND'},
+    {i:0,to:'OR', zh:'\u6539\u7B2C 1 \u4E2A\u95E8 AND\u2192OR',en:'Change gate 1: AND\u2192OR'},
+    {i:4,to:'XOR',zh:'\u6539\u7B2C 5 \u4E2A\u95E8 OR\u2192XOR',en:'Change gate 5: OR\u2192XOR'}
+  ];
+  var t3=t2+1400;
+  wins.forEach(function(w,wi){
+    _ca.push(setTimeout(function(){
+      caSet(w.i,w.to);caHL(w.i,'ok');
+      step.innerHTML='<span style="color:#2e7d32;font-weight:600">\u2714 <span class="zh">'+w.zh+' \u2192 \u8F93\u51FA\u6B63\u786E\uFF01</span><span class="en">'+w.en+' \u2192 Output correct!</span></span>';
+    },t3+wi*1100));
+    _ca.push(setTimeout(function(){caHL(-1,'');},t3+wi*1100+700));
+  });
+
+  // thawed summary + replay
+  var t4=t3+wins.length*1100+400;
+  _ca.push(setTimeout(function(){
+    step.innerHTML='<span style="color:#1565c0;font-weight:600"><span class="zh">\u6210\u529F\uFF01\u7535\u8DEF\u88AB\u5F7B\u5E95\u6539\u9020\uFF0C\u6BCF\u4E00\u6B65\u8F93\u51FA\u90FD\u4FDD\u6301\u6B63\u786E\u3002</span><span class="en">Success! Circuit completely transformed, output correct at every step.</span></span>';
+    document.getElementById('caReplay').style.display='inline-block';
+  },t4));
+}
+
+function replayCA(){
+  _ca.forEach(clearTimeout);_ca=[];
+  caPlayed=false;
+  document.getElementById('caReplay').style.display='none';
+  setTimeout(playCA,150);
+}
+
+// Trigger on scroll
+(function(){
+  var w=document.getElementById('caWrap');
+  if(!w)return;
+  var ob=new IntersectionObserver(function(e){
+    e.forEach(function(en){if(en.isIntersecting){setTimeout(playCA,700);ob.unobserve(w);}});
+  },{threshold:0.3});
+  ob.observe(w);
+})();
+
+// ============================================================
+// Waffle Chart
+// ============================================================
+var DIST=[
+  {c:0,n:1},{c:1,n:3},{c:2,n:5},{c:3,n:20},
+  {c:4,n:34},{c:5,n:75},{c:6,n:70},{c:7,n:12},{c:8,n:2}
+];
+var cells=[];
+DIST.forEach(function(d){for(var i=0;i<d.n;i++)cells.push(d.c);});
+
+(function initWaffle(){
+  var grid=document.getElementById('waffle');
+  cells.forEach(function(c,i){
+    var div=document.createElement('div');
+    div.className='waffle-cell '+(c<=1?'trivial':'disconnected');
+    div.title='#'+(i+1)+' | '+c+(c===1?' gate':' gates');
+    div.dataset.c=c;div.dataset.i=i;
+    grid.appendChild(div);
+  });
+  var pad=15-(cells.length%15);
+  if(pad<15){for(var p=0;p<pad;p++){
+    var e=document.createElement('div');e.className='waffle-cell empty';grid.appendChild(e);
+  }}
+})();
+
+var _wt=[];
+function setWaffle(state){
+  _wt.forEach(clearTimeout);_wt=[];
+  document.getElementById('btnWMin').classList.toggle('active',state===0);
+  document.getElementById('btnWPlus').classList.toggle('active',state===1);
+  var divs=document.querySelectorAll('.waffle-cell:not(.empty)');
+  divs.forEach(function(div,idx){
+    var c=+div.dataset.c,i=+div.dataset.i;
+    var trivial=c<=1;
+    var connected=state===0?trivial:(i<220);
+    var cls='waffle-cell '+(trivial?'trivial':(connected?'connected':'disconnected'));
+    _wt.push(setTimeout(function(){
+      div.className=cls;void div.offsetWidth;div.classList.add('pop');
+    },idx*6));
+  });
+  var last=divs.length*6+400;
+  _wt.push(setTimeout(function(){
+    document.getElementById('statG').textContent=state?'216':'0';
+    document.getElementById('statR').textContent=state?'2':'218';
+    document.getElementById('statT').textContent='4';
+  },last));
+  var wn=document.getElementById('waffleNote');
+  wn.innerHTML=state
+    ?'<span class="zh">\u4EC5\u4EC5\u591A\u4E00\u4E2A\u95E8\uFF0C<b>216</b> \u79CD\u5C31\u89E3\u51BB\u4E86\uFF0899%\uFF09\u3002\u5269\u4E0B <b>2</b> \u79CD\u662F\u6700\u590D\u6742\u7684\u7C7B\u578B\uFF08\u9700\u8981 8 \u4E2A\u95E8\uFF09\uFF0C\u89E3\u51BB\u9700\u8981\u591A\u4E24\u4E2A\u95E8\u3002</span><span class="en">With just one extra gate, <b>216</b> types thaw (99%). The remaining <b>2</b> are the most complex (needing 8 gates) and require two extra gates to thaw.</span>'
+    :'<span class="zh">\u6392\u9664\u592A\u7B80\u5355\u7684 4 \u79CD\u4E4B\u540E\uFF0C\u5269\u4E0B\u7684 218 \u79CD\u5728\u6700\u5C11\u95E8\u65F6<b>\u5168\u90E8</b>\u51BB\u4F4F\uFF0C\u65E0\u4E00\u4F8B\u5916\u3002</span><span class="en">Excluding the 4 simplest types, the remaining 218 are <b>all</b> frozen at minimum gate count, without exception.</span>';
+}
+
+// Init mermaid
+mermaid.initialize({startOnLoad:true,theme:'neutral',flowchart:{curve:'basis'}});
+
+// Scroll reveal for cards
+(function(){
+  var cards=document.querySelectorAll('.card');
+  cards.forEach(function(c,i){
+    if(i===0) return; // first card visible immediately
+    c.style.opacity='0';
+    c.style.transform='translateY(24px)';
+    c.style.transition='opacity .55s ease-out,transform .55s ease-out';
+  });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:'40px'});
+  cards.forEach(function(c,i){if(i>0) io.observe(c);});
+})();
+</script>
+
+</body>
+</html>
