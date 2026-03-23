@@ -2,7 +2,7 @@
 
 Code and data for: **"The Geometry of Circuit-SAT Solution Spaces: Rigidity, Connectivity Thresholds, and Topological Structure"**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19132019.svg)](https://doi.org/10.5281/zenodo.19132019)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19132018.svg)](https://doi.org/10.5281/zenodo.19132018)
 
 ## Overview
 
@@ -96,7 +96,7 @@ Solution matrices (`.npy`) and persistence diagrams are not included due to size
   title        = {The Geometry of Circuit-SAT Solution Spaces:
                   Rigidity, Connectivity Thresholds, and Topological Structure},
   year         = {2026},
-  doi          = {10.5281/zenodo.19132019},
+  doi          = {10.5281/zenodo.19132018},
   publisher    = {Zenodo},
 }
 ```

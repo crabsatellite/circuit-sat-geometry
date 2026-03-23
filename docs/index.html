@@ -125,6 +125,22 @@ main{max-width:780px;margin:0 auto;padding:24px 16px}
 
 @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
 
+/* Three-phase cards */
+.phase-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.phase-card{flex:1;min-width:160px;max-width:220px;border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#555;transition:opacity .3s,transform .3s}
+
+/* Phase explorer */
+.pe-wrap{background:#fafafa;border:1px solid #eee;border-radius:14px;padding:20px 16px 16px;margin:20px 0}
+.pe-tabs{display:flex;justify-content:center;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.pe-tab{padding:8px 18px;border:2px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;transition:all .25s}
+.pe-tab:hover{border-color:#aaa}
+.pe-tab.pe-green{border-color:#66bb6a;background:#e8f5e9;color:#2e7d32}
+.pe-tab.pe-red{border-color:#ef5350;background:#ffebee;color:#c62828}
+.pe-tab.pe-orange{border-color:#ffa726;background:#fff3e0;color:#e65100}
+.pe-info{text-align:center;font-size:14px;color:#555;min-height:44px;line-height:1.6;margin-top:4px}
+.pe-status{font-weight:700;font-size:15px;margin-bottom:2px}
+.phase-card h3{font-size:14px;margin-bottom:4px}
+
 footer{text-align:center;padding:32px 16px;color:#bbb;font-size:12px}
 footer a{color:#666}
 
@@ -141,6 +157,8 @@ footer a{color:#666}
   .swap-board{transform:scale(0.82);transform-origin:center top;margin-bottom:0}
   .ca-gate{width:42px;height:42px;font-size:10px}
   .ca-strip{gap:4px}
+  .phase-row{gap:8px}
+  .phase-card{min-width:100%;padding:12px}
 }
 </style>
 </head>
@@ -170,8 +188,8 @@ footer a{color:#666}
     <span class="en">The Building-Block Intuition</span>
   </h2>
   <p>
-    <span class="zh">想象你用积木搭了一座桥，恰好用完了最少数量的积木，一块都不多余。</span>
-    <span class="en">Imagine you built a bridge out of blocks, using exactly the minimum number needed, not a single one extra.</span>
+    <span class="zh">你用积木搭了一座桥，恰好用完了最少数量的积木，一块都不多余。</span>
+    <span class="en">You built a bridge out of blocks, using exactly the minimum number needed, not a single one extra.</span>
   </p>
   <p>
     <span class="zh">现在你想换掉其中一块。桥塌了。每一块都在承重，抽掉任何一块都会散架。</span>
@@ -182,8 +200,8 @@ footer a{color:#666}
     <span class="en">But what if you had one spare block? You could prop it up first, then swap out the one you want to replace. Just one extra block turns a rigid structure into a flexible one.</span>
   </p>
   <div class="highlight">
-    <span class="zh">我们在<b>数字电路</b>（你手机和电脑芯片的基本构造）中发现了同样的现象：用最少零件搭建电路时，结构被完全冻住，一个零件都动不了。多给一点余量，灵活性立刻恢复。电路的基本功能共有 222 种类型，我们逐一验证了这个现象。</span>
-    <span class="en">We found the same phenomenon in <b>digital circuits</b> (the building blocks of every chip in your phone and computer). At the minimum number of parts, the structure is completely frozen, not a single part can be changed. A little extra room, and flexibility returns. There are 222 basic function types, and we verified this across every one.</span>
+    <span class="zh">我们在数字电路中发现了同样的现象。数字电路是手机和电脑芯片的基本构造。用最少零件搭建电路时，结构被完全冻住，一个零件都动不了。多给一点余量，灵活性立刻恢复。我们对 222 种基本电路功能逐一验证了这个现象。</span>
+    <span class="en">We found the same phenomenon in digital circuits, the basic building blocks inside every chip in your phone and computer. At the minimum number of parts, the structure is completely frozen; no part can be changed. A little extra room, and flexibility returns. We verified this across all 222 basic circuit function types.</span>
   </div>
 </div>
 
@@ -194,8 +212,8 @@ footer a{color:#666}
     <span class="en">Logic Gates: The Smallest Parts</span>
   </h2>
   <p>
-    <span class="zh">数字电路由逻辑门组成。每个门接收两个输入信号（0＝关 或 1＝开），按固定规则输出一个结果。</span>
-    <span class="en">Digital circuits are made of logic gates. Each gate takes two input signals (0 = off, 1 = on) and produces one output by a fixed rule.</span>
+    <span class="zh">数字电路由逻辑门组成，每个门就是一个微型开关盒：接收两个输入信号（0＝关 或 1＝开），按固定规则输出一个结果。一个芯片里有几十亿个这样的门。</span>
+    <span class="en">Digital circuits are made of logic gates. Each gate is a tiny switch box: it takes two input signals (0 = off, 1 = on) and produces one output by a fixed rule. A single chip contains billions of these gates.</span>
   </p>
   <p>
     <span class="zh"><b>点击开关试试看</b>，观察每种门的输出如何变化：</span>
@@ -206,8 +224,8 @@ footer a{color:#666}
     <div class="gate-box" id="gateAND">
       <h3>AND</h3>
       <div class="desc">
-        <span class="zh">两个都开才输出开</span>
-        <span class="en">Both on → on</span>
+        <span class="zh">两个都开才输出开，否则关</span>
+        <span class="en">Both on → on; otherwise off</span>
       </div>
       <div class="gate-toggle">
         <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
@@ -218,8 +236,8 @@ footer a{color:#666}
     <div class="gate-box" id="gateOR">
       <h3>OR</h3>
       <div class="desc">
-        <span class="zh">有一个开就输出开</span>
-        <span class="en">Either on → on</span>
+        <span class="zh">至少一个开就输出开，全关才关</span>
+        <span class="en">At least one on → on; both off → off</span>
       </div>
       <div class="gate-toggle">
         <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
@@ -230,8 +248,8 @@ footer a{color:#666}
     <div class="gate-box" id="gateXOR">
       <h3>XOR</h3>
       <div class="desc">
-        <span class="zh">两个不一样才输出开</span>
-        <span class="en">Different → on</span>
+        <span class="zh">异或：两个不一样才输出开</span>
+        <span class="en">Exclusive OR: different → on</span>
       </div>
       <div class="gate-toggle">
         <button class="sw" onclick="toggleSw(this)" data-v="0">A: <span class="zh">关</span><span class="en">off</span></button>
@@ -245,7 +263,7 @@ footer a{color:#666}
     <span class="zh"><b>想一想：</b>AND 和 OR 有什么区别？试试让它们给出不同的输出。（点击展开答案）</span>
     <span class="en"><b>Think:</b> What's the difference between AND and OR? Try to make them give different outputs. (Click to reveal)</span>
     <div class="answer">
-      <span class="zh">当 A=0, B=1（或 A=1, B=0）时，OR 输出 1，AND 输出 0。OR 只需要一个「开」就行，AND 需要两个都「开」。</span>
+      <span class="zh">当 A=0, B=1（或 A=1, B=0）时，OR 输出 1，AND 输出 0。OR 只需要一个开就行，AND 需要两个都开。</span>
       <span class="en">When A=0, B=1 (or A=1, B=0), OR outputs 1 while AND outputs 0. OR only needs one "on"; AND needs both.</span>
     </div>
   </div>
@@ -294,13 +312,55 @@ footer a{color:#666}
   </div>
 
   <p>
-    <span class="zh"><b>同一组输入，经过不同的门和连法，会得到不同的输出</b>。电路的功能就是它对每种输入组合给出的输出表。</span>
-    <span class="en"><b>The same inputs, through different gates and wirings, produce different outputs.</b> A circuit's function is its complete input-output table.</span>
+    <span class="zh">同一组输入，经过不同的门和连法，会得到<b>不同的输出</b>。电路的功能就是它对每种输入组合给出的输出表。</span>
+    <span class="en">The same inputs, through different gates and wirings, produce <b>different outputs</b>. A circuit's function is its complete input-output table.</span>
   </p>
   <p>
-    <span class="zh">而且<b>不同的电路可以实现同一个功能</b>，就像从家到学校可以走不同的路。那么问题来了：实现同一个功能，最少需要几个门？</span>
-    <span class="en">And <b>different circuits can produce the same function</b>, just like different routes to the same destination. This raises a question: what is the minimum number of gates needed for a given function?</span>
+    <span class="zh">而且不同的电路可以实现同一个功能，就像从家到学校可以走不同的路。自然的下一个问题：实现同一个功能，最少需要几个门？门越少，芯片越小、越省电，工程师一直在追求这个下限。</span>
+    <span class="en">And different circuits can produce the same function, just like different routes to the same destination. The natural next question: what is the minimum number of gates needed for a given function? Fewer gates mean smaller, cheaper, more energy-efficient chips, so engineers constantly seek this lower bound.</span>
   </p>
+
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:20px auto;max-width:440px">
+    <div style="text-align:center;flex-shrink:0">
+      <div style="display:flex;flex-direction:column;gap:3px;align-items:center">
+        <div style="background:#5c6bc0;color:#fff;border-radius:50%;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">x1</div>
+        <div style="background:#5c6bc0;color:#fff;border-radius:50%;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">x2</div>
+        <div style="background:#5c6bc0;color:#fff;border-radius:50%;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">x3</div>
+        <div style="background:#5c6bc0;color:#fff;border-radius:50%;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">x4</div>
+      </div>
+      <div style="font-size:10px;color:#5c6bc0;margin-top:4px;font-weight:600">
+        <span class="zh">输入（固定 4 个）</span>
+        <span class="en">Inputs (fixed: 4)</span>
+      </div>
+    </div>
+    <div style="font-size:22px;color:#ccc;flex-shrink:0">&rarr;</div>
+    <div style="text-align:center;flex-shrink:0">
+      <div style="display:flex;flex-direction:column;gap:3px;align-items:center">
+        <div style="background:#66bb6a;color:#fff;border-radius:8px;padding:5px 14px;font-size:11px;font-weight:700">AND</div>
+        <div style="background:#ffa726;color:#fff;border-radius:8px;padding:5px 14px;font-size:11px;font-weight:700">OR</div>
+        <div style="border:2px dashed #ccc;border-radius:8px;padding:3px 14px;font-size:11px;color:#bbb">...</div>
+      </div>
+      <div style="font-size:10px;color:#e65100;margin-top:4px;font-weight:600">
+        <span class="zh">门（数量可变 = C）</span>
+        <span class="en">Gates (variable = C)</span>
+      </div>
+    </div>
+    <div style="font-size:22px;color:#ccc;flex-shrink:0">&rarr;</div>
+    <div style="text-align:center;flex-shrink:0">
+      <div style="background:#1a1a2e;color:#fff;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">
+        <span class="zh">输出</span><span class="en">out</span>
+      </div>
+      <div style="font-size:10px;color:#1a1a2e;margin-top:4px;font-weight:600">
+        <span class="zh">输出（1 个）</span>
+        <span class="en">Output (1)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-point">
+    <span class="zh"><b>输入和门是两回事。</b>上面的例子用了 3 个输入和 2 个门。我们的研究固定使用 4 个输入（x1, x2, x3, x4），门的数量从 0 到 8 不等。输入是外部送进来的信号，始终 4 个不变；门是内部的处理元件，数量可多可少。实现同一个功能所需的<b>最少门数</b>，就是这个功能的复杂度 C。</span>
+    <span class="en"><b>Inputs and gates are different things.</b> The example above used 3 inputs and 2 gates. Our study fixes the number of inputs at 4 (x1, x2, x3, x4), while the gate count ranges from 0 to 8. Inputs are the external signals fed in, always 4; gates are the internal processing components, and their count varies. The minimum number of gates needed for a function is its complexity C.</span>
+  </div>
 </div>
 
 <!-- Section 3: Rewiring -->
@@ -318,7 +378,7 @@ footer a{color:#666}
     <span class="en"><b>Can you transform one circuit into another by changing just one gate at a time?</b></span>
   </p>
   <p>
-    <span class="zh">「动一个门」只有两种操作：</span>
+    <span class="zh">动一个门只有两种操作：</span>
     <span class="en">"Changing one gate" means exactly one of two operations:</span>
   </p>
   <ul style="margin:0 0 12px 20px;color:#555;font-size:15px">
@@ -332,8 +392,8 @@ footer a{color:#666}
     </li>
   </ul>
   <p>
-    <span class="zh">规则：门的<b>数量始终不变</b>，<b>每改一步之后电路必须仍然正确</b>，不能让它在中途出错。</span>
-    <span class="en">The rule: the number of gates <b>stays constant</b>, and the circuit must <b>remain correct after every single step</b>.</span>
+    <span class="zh">规则：门的数量始终不变，每改一步之后电路必须仍然<b>输出正确的结果</b>（对所有输入组合都正确），不能让它在中途算错。</span>
+    <span class="en">The rule: the number of gates stays constant, and the circuit must still produce the <b>correct output after every single step</b> (correct for all input combinations).</span>
   </p>
 
   <p>
@@ -368,8 +428,8 @@ footer a{color:#666}
   </div>
 
   <p>
-    <span class="zh">把改造关系画成图：每种正确的电路画成一个<b>圆点</b>，两种电路之间如果只差一步改动，就连一条<b>线</b>。下面两个电路的结构完全不同：</span>
-    <span class="en">Picture the transformation as a graph: each valid circuit is a <b>dot</b>, and two circuits get a <b>line</b> between them if they differ by just one step. These two circuits have very different structures:</span>
+    <span class="zh">把改造关系画成一张网络地图，类似地铁线路图：每种正确的电路是一个圆点，两种电路之间只差一步改动就连一条线。下面两个电路的结构完全不同：</span>
+    <span class="en">We can draw the transformation relationships as a network map, like a subway diagram: each valid circuit is a dot, and two circuits get a line between them if they differ by just one step. These two circuits have very different structures:</span>
   </p>
 
   <div class="mermaid-wrap">
@@ -416,12 +476,12 @@ graph LR
     <span class="en">The Discovery: Frozen and Thawed</span>
   </h2>
   <p>
-    <span class="zh">你已经亲手体验了「换一个门就坏掉」的感觉。那如果<b>多给一个门</b>呢？为什么仅仅多一个就能改变一切？</span>
-    <span class="en">Changing one gate breaks everything, as you just saw. What if you <b>add one extra gate</b>? Why should one more gate change anything?</span>
+    <span class="zh">换一个门就坏掉。那如果多给一个门呢？</span>
+    <span class="en">Changing one gate breaks everything. What if there were one extra gate?</span>
   </p>
   <p>
-    <span class="zh">用一个简单的例子来理解。假设你有三个门排成一排，想把前两个的位置互换，但同一时间只能移动一个：</span>
-    <span class="en">Here is a simple example. You have three gates in a row and want to swap the first two, but can only move one at a time:</span>
+    <span class="zh">看一个简单的例子。三个门排成一排，目标是把前两个的位置互换，但同一时间只能移动一个：</span>
+    <span class="en">Consider three gates in a row. The goal is to swap the first two, but only one can move at a time:</span>
   </p>
 
   <div class="swap-demo">
@@ -465,8 +525,8 @@ graph LR
     <span class="en">Frozen vs. Thawed: The Full Process</span>
   </h2>
   <p>
-    <span class="zh">刚才用 3 个门演示了空位的作用。现在用一个 5 门电路来完整展示「冻住」和「解冻」到底是什么样的：</span>
-    <span class="en">The swap demo showed how a spare slot helps with 3 gates. Now watch the full "frozen" and "thawed" process with a 5-gate circuit:</span>
+    <span class="zh">刚才用 3 个门演示了空位的作用。现在用一个 5 门电路来完整展示冻住和解冻到底是什么样的：</span>
+    <span class="en">Here is the full "frozen" and "thawed" process with a 5-gate circuit:</span>
   </p>
   <div class="ca-wrap" id="caWrap">
     <div class="ca-phase" id="caPhase"></div>
@@ -489,8 +549,8 @@ graph LR
     <span class="en">The Full Picture: 222 Functions</span>
   </h2>
   <p>
-    <span class="zh">上面只看了一个功能。总共有多少种不同的功能？</span>
-    <span class="en">We only looked at one function above. How many distinct functions exist?</span>
+    <span class="zh">上面的例子用了 2&ndash;3 个输入。我们完整实验的范围是 4 个输入的电路。为什么是 4？3 个太简单，5 个以上计算量巨大，4 刚好能覆盖足够多的情况又在计算能力之内。总共有多少种不同的功能？</span>
+    <span class="en">The examples above used 2&ndash;3 inputs. Our full experiment covers circuits with 4 inputs. Why 4? Three inputs are too simple; five or more make the computation enormous. Four is large enough to reveal patterns yet small enough to check exhaustively. How many distinct functions exist?</span>
   </p>
 
   <p>
@@ -503,8 +563,8 @@ graph LR
   </div>
 
   <p>
-    <span class="zh">对每种组合，输出可以独立选 0 或 1。16 个位置，每个位置 2 种选择：</span>
-    <span class="en">For each combination, the output can independently be 0 or 1. That's 16 positions, 2 choices each:</span>
+    <span class="zh">对每种组合，输出可以独立选 0 或 1。就像 4 个输入各选 0/1 有 2&times;2&times;2&times;2=16 种一样，16 个位置各选 0/1 就是 2 乘 16 次：</span>
+    <span class="en">For each combination, the output can independently be 0 or 1. Just like 4 inputs gave 2&times;2&times;2&times;2=16, now 16 positions each choosing 0 or 1 means 2 multiplied 16 times:</span>
   </p>
   <div class="highlight">2<sup>16</sup> = <b>65,536</b>
     <span class="zh">种可能的功能</span>
@@ -512,8 +572,8 @@ graph LR
   </div>
 
   <p>
-    <span class="zh">但很多功能本质相同，例如：</span>
-    <span class="en">But many functions are identical up to relabeling:</span>
+    <span class="zh">但很多功能是「换了马甲」的同一个东西，例如：</span>
+    <span class="en">But many functions are the same thing in disguise:</span>
   </p>
   <ul style="margin:0 0 12px 20px;color:#555;font-size:15px">
     <li>
@@ -521,8 +581,8 @@ graph LR
       <span class="en">"x1 AND x2" and "x2 AND x1" just swap input names</span>
     </li>
     <li>
-      <span class="zh">把一个功能的所有 0 和 1 互换（输入输出全部翻转），得到的功能本质上和原来一样</span>
-      <span class="en">Flipping all 0s and 1s (both inputs and outputs) gives an equivalent function</span>
+      <span class="zh">把一个功能的所有 0 和 1 互换（输入输出全部翻转），就像照片底片，黑白全反了，但图案本质相同</span>
+      <span class="en">Flipping all 0s and 1s (both inputs and outputs) is like a photo negative: black and white swap, but the pattern is the same</span>
     </li>
   </ul>
   <p>
@@ -534,8 +594,8 @@ graph LR
     <span class="zh"><b>想一想：</b>为什么恰好是 222 种？（点击展开）</span>
     <span class="en"><b>Think:</b> Why exactly 222? (Click to reveal)</span>
     <div class="answer">
-      <span class="zh">想象一个正方形：旋转 90° 和翻转后它看起来一样，所以这些算同一种。对电路功能也可以做类似的操作——交换输入的顺序、或者把 0 和 1 全部翻转。做完所有这些「对称操作」之后，65,536 种功能合并成了 222 种无法互相转化的类型。</span>
-      <span class="en">Think of a square: after rotating 90° or flipping it, it looks the same, so those count as one shape. We can do similar operations on circuit functions: swap the order of inputs, or flip all 0s and 1s. Once all such "symmetry operations" are applied, 65,536 functions merge into 222 types that cannot be transformed into each other.</span>
+      <span class="zh">正方形旋转 90° 或翻转后看起来一样，所以算同一种形状。电路功能也有类似的变换：把 x1 和 x2 的名字互换（类似正方形左右翻转），或者把所有 0 和 1 互换（类似底片取反）。两个功能如果通过这些变换能变成对方，就归为同一种。穷尽所有可能的变换后，65,536 种功能归结为 222 种无法互相转化的类型。</span>
+      <span class="en">A square rotated 90° or flipped looks the same, so it counts as one shape. Circuit functions have similar transformations: swap the names x1 and x2 (analogous to flipping a square left-right), or flip all 0s and 1s (analogous to a photo negative). Two functions that can become each other through such transformations count as the same type. After exhausting all possible transformations, 65,536 functions reduce to 222 types that cannot be converted into each other.</span>
     </div>
   </div>
 
@@ -592,36 +652,312 @@ graph LR
   </div>
 
   <div class="think-box" onclick="this.classList.toggle('open')">
-    <span class="zh"><b>想一想：</b>切换到「多一个门」后，观察解冻的速度——为什么不是一下子全部解冻？（点击展开）</span>
+    <span class="zh"><b>想一想：</b>切换到「多一个门」后，观察解冻的速度。为什么不是一下子全部解冻？（点击展开）</span>
     <span class="en"><b>Think:</b> Toggle "one extra gate" and observe the thawing rate: why don't they all thaw at once? (Click to reveal)</span>
     <div class="answer">
-      <span class="zh">因为<b>解冻所需的余量取决于复杂度</b>。大多数类型的门数在 3–7 之间，电路并不极端拥挤，一个额外的门就足够腾挪，所以 216 种一下子就解冻了（99%）。但最复杂的 2 种类型需要 <b>8 个门</b>（4 输入电路的上限），结构非常紧凑，一个空位不够用，需要两个。复杂度越高，解冻门槛越高。</span>
-      <span class="en">Because <b>the slack needed to thaw depends on complexity</b>. Most types need 3–7 gates, so one extra gate is enough room to maneuver, and 216 types thaw at once (99%). But the 2 most complex types need <b>8 gates</b> (the maximum for 4 inputs), leaving very little room. One spare slot is not enough; they need two. The higher the complexity, the higher the thawing threshold.</span>
+      <span class="zh">因为<b>解冻所需的余量取决于复杂度</b>。大多数类型的门数在 3–7 之间，一个额外的门就足够腾挪，所以 216 种一下子就解冻了。但最复杂的 2 种类型需要 <b>8 个门</b>（数学家证明过 4 输入的功能最多用 8 个门就一定能实现）。积木越多、搭得越紧密，一块备用积木能腾挪的空间就越小。这 2 种类型的 8 个门紧紧咬合在一起，一个空位只能挪动一小部分，不足以完成完整的改造，需要两个空位才够。复杂度越高，解冻门槛越高。</span>
+      <span class="en">Because <b>the slack needed to thaw depends on complexity</b>. Most types need 3–7 gates, so one extra gate is enough room, and 216 types thaw at once. But the 2 most complex types need <b>8 gates</b> (mathematicians proved that any 4-input function can always be built with at most 8 gates). The more blocks and the tighter the fit, the less one spare block can help you rearrange. These 2 types have 8 gates tightly interlocked, so one spare slot can only shift a small part of the structure, not enough for a full transformation. They need two spare slots. The higher the complexity, the higher the thawing threshold.</span>
     </div>
   </div>
 </div>
 
-<!-- Section 6: So what -->
+<!-- Section 5b: Three-phase structure -->
 <div class="card">
   <h2>
-    <span class="zh">这意味着什么？</span>
-    <span class="en">What Does This Mean?</span>
+    <span class="zh">不只是两种状态：三个阶段</span>
+    <span class="en">Not Just Two States: Three Phases</span>
   </h2>
   <p>
-    <span class="zh">回到开头的积木比喻。你的手机芯片里有几十亿个逻辑门，工程师设计电路时始终面临一个取舍：用更少的门省成本，还是留一些余量换灵活性？</span>
-    <span class="en">Back to the building-block analogy. Your phone's chip contains billions of logic gates, and engineers always face a trade-off: use fewer gates to save cost, or keep some slack for flexibility?</span>
+    <span class="zh">前面电路只分了冻住和可改造两种状态。对 222 种功能的改造网络做更细致的分析，会发现三个截然不同的阶段。</span>
+    <span class="en">The "frozen or rewirable" dichotomy turns out to be three distinct phases. A finer analysis of the transformation network across all 222 types reveals them.</span>
   </p>
   <p>
-    <span class="zh">我们的发现给出了明确答案：用最少的门时，218 种功能全部冻住。多一个门，216 种立刻解冻；多两个门，全部解冻。从「全部冻住」到「几乎全部可改造」，只差一个门。</span>
-    <span class="en">Our finding gives a clear answer: at the minimum gate count, all 218 functions are frozen. Add one gate, 216 thaw at once; add two, all of them do. The gap between "all frozen" and "almost all rewirable" is exactly one gate.</span>
+    <span class="zh">前面试过的 AND→OR 电路用了 2 个门，动画里的电路用了 5 个门。不同功能需要的最少门数不同，我们用 C 来表示这个最少门数。点击不同的 C 值，看看改造网络是什么样的：</span>
+    <span class="en">The AND→OR circuit you tried used 2 gates; the animated circuit used 5. Different functions need different minimum gate counts — we call this number C. Click each C value to see the transformation network:</span>
+  </p>
+
+  <div class="pe-wrap">
+    <div class="pe-tabs">
+      <button class="pe-tab pe-green" data-p="0" onclick="showPhase(0)">C = 0</button>
+      <button class="pe-tab" data-p="1" onclick="showPhase(1)">C = 1</button>
+      <button class="pe-tab" data-p="2" onclick="showPhase(2)">C = 2</button>
+      <button class="pe-tab" data-p="3" onclick="showPhase(3)">C &ge; 3</button>
+    </div>
+    <div id="peView" style="min-height:120px"></div>
+    <div class="pe-info" id="peInfo"></div>
+  </div>
+
+  <p style="font-size:13px;color:#888;text-align:center;margin:4px 0 16px">
+    <span class="zh">圆点 = 电路，连线 = 只差一步改动。下面的三张卡片对应上面三种颜色：</span>
+    <span class="en">Dots = circuits, lines = one-step rewiring. The three cards below match the three colors above:</span>
+  </p>
+
+  <div class="phase-row">
+    <div class="phase-card" style="background:#e8f5e9;border:2px solid #66bb6a">
+      <h3 style="color:#2e7d32">C &le; 1</h3>
+      <div style="font-size:13px;font-weight:600;color:#2e7d32;margin-bottom:6px">
+        <span class="zh">完全连通</span><span class="en">Connected</span>
+      </div>
+      <p style="margin:0">
+        <span class="zh">功能太简单（0 个门 = 输出直接等于某个输入；1 个门 = 只有一个门）。因为输入变量有多余的（比如 1 个门只用 2 个输入，剩下的没有连上），所以可以一步步换接线：先换一个空闲变量上去，再换掉另一个，像接力一样最终到达任何目标电路</span>
+        <span class="en">Functions too simple (0 gates = output equals an input directly; 1 gate = just one gate). Since there are unused input variables (e.g. 1 gate uses only 2 of 4 inputs), you can rewire step by step: swap in an unused variable, then swap out another, relay-style, eventually reaching any target circuit</span>
+      </p>
+    </div>
+    <div class="phase-card" style="background:#ffebee;border:2px solid #ef5350">
+      <h3 style="color:#c62828">C = 2</h3>
+      <div style="font-size:13px;font-weight:600;color:#c62828;margin-bottom:6px">
+        <span class="zh">完全孤立</span><span class="en">Totally isolated</span>
+      </div>
+      <p style="margin:0">
+        <span class="zh">每个电路都是孤岛，改动任何一个门必然出错。222 种中有 5 种需要恰好 2 个门，它们的每一个最小电路都完全孤立</span>
+        <span class="en">Every circuit is an island; any single-gate edit breaks it. Of the 222 types, 5 need exactly 2 gates, and every one of their minimum circuits is completely isolated</span>
+      </p>
+    </div>
+    <div class="phase-card" style="background:#fff3e0;border:2px solid #ffa726">
+      <h3 style="color:#e65100">C &ge; 3</h3>
+      <div style="font-size:13px;font-weight:600;color:#e65100;margin-bottom:6px">
+        <span class="zh">碎片化</span><span class="en">Fragmented</span>
+      </div>
+      <p style="margin:0">
+        <span class="zh">电路像群岛一样分成几组：同一个岛上的电路可以逐步改造，但岛与岛之间走不通</span>
+        <span class="en">Circuits split into island groups: rewirable within each island, but no path between islands</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <span class="zh">C = 2 时每个电路都是孤岛（完全孤立），而 C &ge; 3 时电路至少能组成小群落（碎片化但不孤立）。C = 2 是唯一一个所有电路都找不到改造伙伴的复杂度等级。更大的 5 输入电路（约 61 万种类型）也呈现同样的三阶段规律。</span>
+    <span class="en">At C = 2, every circuit is an island (total isolation), while at C &ge; 3, circuits form small clusters (fragmented but not isolated). C = 2 is the only complexity level where no circuit can be transformed into another. Larger 5-input circuits (about 616,000 types) show the same three-phase pattern.</span>
+  </div>
+</div>
+
+<!-- Section 5c: Rigidity theorem -->
+<div class="card">
+  <h2>
+    <span class="zh">为什么 C = 2 如此特殊？</span>
+    <span class="en">Why Is C = 2 So Special?</span>
+  </h2>
+  <p>
+    <span class="zh">C = 2 的完全孤立不是巧合，而是数学必然。我们证明了一条规则，叫做刚性定理。</span>
+    <span class="en">Total isolation at C = 2 is not coincidence; it is a mathematical necessity. We proved a rule called the rigidity theorem.</span>
+  </p>
+  <p>
+    <span class="zh">类比一支乐队：鼓手、贝斯手、吉他手，每人角色独一无二，没有替补。换掉任何一个成员，乐队的声音一定会变。</span>
+    <span class="en">It is like a band: drummer, bassist, guitarist, each with a unique role and no substitute. Replace any one member and the band's sound changes.</span>
+  </p>
+  <p>
+    <span class="zh">2 个门的电路也是如此。只用 2 个门，这已经是最少数量，没有一个门多余。如果某个门漏掉了某种输入组合（比如从不碰到「关开」），那说明它的那个输入端并不重要，可以去掉或替换，和最少门数矛盾。所以在最少门的 2 门电路中，每个门必然碰到它的两个输入的所有可能组合：关关、关开、开关、开开全部出现。我们称这种电路为「完全锻炼」的：</span>
+    <span class="en">The same holds for 2-gate circuits. With only 2 gates, this is already the minimum; no gate is redundant. If some gate skipped an input combination (say it never encountered "off-on"), that would mean one of its inputs does not matter and could be removed, contradicting minimality. So in any minimum 2-gate circuit, each gate must encounter every possible combination of its two inputs (off-off, off-on, on-off, on-on) across all 16 input cases. We call such a circuit "fully exercised":</span>
   </p>
   <div class="key-point">
-    <span class="zh"><b>代价与回报：</b>追求极致精简，系统完全僵死。多一点余量，灵活性立刻回来。功能越简单恢复越快，越复杂需要的余量越多。</span>
-    <span class="en"><b>The trade-off:</b> push to the absolute minimum and the system locks up. A small amount of slack brings flexibility right back. Simpler functions recover faster; complex ones need more room.</span>
+    <span class="zh">完全锻炼 = 零余量。每个门在所有可能的输入组合下都被用到了，而且四种组合下的输出不完全相同（否则那个输入根本不重要，可以简化）。换一种门的类型，比如 AND 换成 OR，四种输入组合中至少有一种输出会变，从而改变最终结果。没有门可以被替换。</span>
+    <span class="en">Fully exercised = zero wiggle room. Every gate encounters all possible input combinations, and its outputs for those four combinations are not all identical (otherwise that input would not matter and the circuit could be simplified). Switching a gate's type, say AND to OR, must change the output for at least one of the four combinations, breaking the final result. No gate can be replaced.</span>
   </div>
+  <p>
+    <span class="zh">而且这个结论不只对 4 输入成立。我们证明了：对任意 3 个以上输入（3 个、4 个、100 个、100 万个……），所有 2 门最小电路都是完全锻炼的。这是数学证明，不需要一个个试，哪怕是一百万个输入的电路也不例外。</span>
+    <span class="en">This holds beyond 4 inputs. We proved that for any number of inputs from 3 upward (3, 4, 100, a million...), every minimum-size 2-gate circuit is fully exercised. This is a mathematical proof, not just a computer check; it works even for a million inputs without testing each one.</span>
+  </p>
+
+  <div class="think-box" onclick="this.classList.toggle('open')">
+    <span class="zh"><b>想一想：</b>为什么 C = 1 没有这种完全孤立现象？（点击展开）</span>
+    <span class="en"><b>Think:</b> Why doesn't total isolation happen at C = 1? (Click to reveal)</span>
+    <div class="answer">
+      <span class="zh">1 个门只有 2 个输入端，但输入变量有 3 个以上。比如 4 个变量中只用了 x1 和 x2，那 x3 和 x4 就是空闲的。把 x2 换成 x3（让门接收 x1 和 x3），只要新功能和原来本质相同，这一步就是合法的改造。因为有空闲变量，总有这种换法可以走。到了 C = 2，每个变量都在干活，没有空闲的可以替换，刚性出现。</span>
+      <span class="en">A single gate has only 2 input slots, but there are 3 or more input variables. If the gate uses x1 and x2, then x3 and x4 are idle. Swapping x2 for x3 (so the gate receives x1 and x3 instead) is a valid rewiring step, as long as the new function is the same type. Because idle variables exist, there is always such a swap available. At C = 2, every variable is doing real work, none are idle, and rigidity appears.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 5d: Distance/Count Asymmetry -->
+<div class="card">
+  <h2>
+    <span class="zh">一个出人意料的不对称</span>
+    <span class="en">A Surprising Asymmetry</span>
+  </h2>
+  <p>
+    <span class="zh">一个自然的猜测：功能越复杂，可能的搭法越多，或者不同搭法之间的差异越大。实际情况只有一半对：</span>
+    <span class="en">A natural guess: more complex functions have more ways to build them, or have circuits that differ more from each other. The reality is half right:</span>
+  </p>
+  <p>
+    <span class="zh">衡量两件事是否一起变化，可以用相关系数。它介于 &minus;1 和 1 之间。接近 1：一起变大，比如身高和体重。接近 0：没什么关系。接近 &minus;1：一个变大另一个就变小。我们测量了两种东西：</span>
+    <span class="en">To measure whether two things move together, we use the correlation coefficient, which ranges from &minus;1 to 1. Values near 1 mean they rise together (like height and weight), near 0 means no relationship, and near &minus;1 means one rises while the other falls. We measured two things:</span>
+  </p>
+
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:20px 0">
+    <div style="flex:1;min-width:200px;max-width:280px;background:#e3f2fd;border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:14px;font-weight:600;color:#1565c0;margin-bottom:4px">
+        <span class="zh">距离（电路之间有多远）</span>
+        <span class="en">Distance (how far apart)</span>
+      </div>
+      <div style="font-size:36px;font-weight:700;color:#1565c0;margin:8px 0">0.867</div>
+      <div style="font-size:12px;color:#666">
+        <span class="zh">与复杂度<b>强相关</b></span>
+        <span class="en"><b>Strong</b> correlation with complexity</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:200px;max-width:280px;background:#f5f5f5;border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:14px;font-weight:600;color:#888;margin-bottom:4px">
+        <span class="zh">数量（有多少种电路）</span>
+        <span class="en">Count (how many circuits)</span>
+      </div>
+      <div style="font-size:36px;font-weight:700;color:#bbb;margin:8px 0">&asymp; 0</div>
+      <div style="font-size:12px;color:#666">
+        <span class="zh">与复杂度<b>无关</b></span>
+        <span class="en"><b>No</b> correlation with complexity</span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <span class="zh">0.867 非常接近 1，说明功能越复杂，不同电路之间的差异越大，改造起来需要的步数越多。但电路的数量（有多少种正确的搭法、分成了几组）和复杂度几乎完全无关。</span>
+    <span class="en">0.867 is very close to 1: more complex functions have circuits that differ more, requiring more steps to transform one into another. But the count of correct circuits (how many exist and how many groups they split into) has near-zero correlation with complexity.</span>
+  </p>
+  <div class="highlight">
+    <span class="zh">距离与数量的不对称：复杂度决定了电路之间有多分散，但不决定正确电路有多多。类比班级同学的住处：有些班级同学住得很分散，但人数不一定更多。</span>
+    <span class="en">Distance vs. count: complexity determines how spread out circuits are, but not how many correct circuits exist. Like classmates' addresses: some classes have students scattered far apart, but that does not mean the class is bigger.</span>
+  </div>
+</div>
+
+<!-- Section 5e: Dimensional confound -->
+<div class="card">
+  <h2>
+    <span class="zh">这个相关性是真的吗？</span>
+    <span class="en">Is This Correlation Real?</span>
+  </h2>
+  <p>
+    <span class="zh">但有一个问题：复杂的功能需要更多门，描述电路的信息也更长。就像学籍档案越详细，两个人的档案之间自然能找到更多不同的地方，不一定是因为这两个人真的差异更大。也许 0.867 只是描述更长的副产品？</span>
+    <span class="en">But there is a catch: complex functions need more gates, so their circuits take more information to describe. Like longer school records: comparing two long records naturally turns up more differences, not necessarily because the students are truly more different. Maybe 0.867 is just a side effect of "longer descriptions"?</span>
+  </p>
+  <p>
+    <span class="zh">为了检验，我们做了一个洗牌实验。每个电路可以写成一串符号，比如「第一个门用 AND，接 x1 和 x2；第二个门用 OR，接第一个门的输出和 x3」。复杂的电路需要更多门，这串符号也更长。我们把这串符号的顺序随机打乱，长度不变，但内容变成了乱码，不再代表任何真实的电路。如果 0.867 来自真实的结构差异，洗牌后应该下降。结果：</span>
+    <span class="en">To test this, we ran a shuffle experiment. Each circuit can be written as a string of symbols, for example: "first gate uses AND, connected to x1 and x2; second gate uses OR, connected to the first gate's output and x3." More complex circuits need more gates, so their strings are longer. We scrambled each string randomly: same length, but the content becomes gibberish, no longer describing any real circuit. If 0.867 reflects real structural differences, it should drop after scrambling. The result:</span>
+  </p>
+
+  <div style="max-width:420px;margin:20px auto">
+    <div style="display:flex;align-items:center;gap:10px;margin:8px 0">
+      <span style="min-width:100px;text-align:right;font-size:13px;color:#666">
+        <span class="zh">原始编码</span><span class="en">Original</span>
+      </span>
+      <div style="height:24px;border-radius:4px;background:#42a5f5;width:87%;display:flex;align-items:center;padding-left:8px">
+        <span style="color:#fff;font-size:12px;font-weight:600">0.867</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin:8px 0">
+      <span style="min-width:100px;text-align:right;font-size:13px;color:#666">
+        <span class="zh">洗牌后</span><span class="en">Shuffled</span>
+      </span>
+      <div style="height:24px;border-radius:4px;background:#ef5350;width:93%;display:flex;align-items:center;padding-left:8px">
+        <span style="color:#fff;font-size:12px;font-weight:600">0.932</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin:8px 0">
+      <span style="min-width:100px;text-align:right;font-size:13px;color:#666">
+        <span class="zh">去掉长度影响后</span><span class="en">After removing length effect</span>
+      </span>
+      <div style="height:24px;border-radius:4px;background:#66bb6a;width:34%;display:flex;align-items:center;padding-left:8px">
+        <span style="color:#fff;font-size:12px;font-weight:600">0.338</span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <span class="zh">洗牌后相关性反而<b>更高</b>了（0.932）。洗牌后符号变成了乱码，不包含任何真实的电路信息，唯一保留的就是长度。所以 0.932 纯粹是「描述越长，距离越大」造成的假关联。真实电路才 0.867，比乱码还低，说明真实的电路结构反而抵消了一部分长度效应。用偏相关方法把长度的影响扣除后，真正跟电路结构有关的关联只有 0.338，确实存在，但比 0.867 温和得多。</span>
+    <span class="en">After scrambling, the correlation rose to 0.932. Scrambled symbols are gibberish with no real circuit information; the only thing preserved is length. So 0.932 is purely the fake correlation from "longer descriptions = bigger distances." Real circuits showed only 0.867, lower than pure gibberish, meaning real circuit structure dampens the length effect. Using partial correlation (holding length constant and measuring what remains), the true connection to circuit structure is just 0.338: real, but much more modest than 0.867 suggested.</span>
+  </p>
+  <div class="key-point">
+    <span class="zh">0.867 看起来关联很强，但大部分是描述越长、距离越大造成的假象。去掉这个假象后，真正的关联只有 0.338，属于弱到中等的关系：有联系，但远不像 0.867 暗示的那么紧密。</span>
+    <span class="en">0.867 looks strong, but most of it is the illusion of "longer descriptions = bigger differences." After removing that, the real connection is just 0.338: a weak-to-moderate relationship, present but far less dramatic than 0.867 suggested.</span>
+  </div>
+</div>
+
+<!-- Section 5f: Topological loops -->
+<div class="card">
+  <h2>
+    <span class="zh">解空间里的环</span>
+    <span class="en">Loops in the Solution Space</span>
+  </h2>
+  <p>
+    <span class="zh">前面讨论了电路之间能不能走通、有多远。除此之外还可以看<b>形状</b>。数学里有一个专门研究形状的分支叫<b>拓扑</b>，不关心精确距离，只关心连接方式：有没有环路？有没有死胡同？</span>
+    <span class="en">Beyond reachability and distance, the transformation network has a <b>shape</b>. A branch of mathematics called <b>topology</b> studies exactly this, ignoring exact distances and focusing on connectivity: are there loops? Dead ends?</span>
+  </p>
+  <p>
+    <span class="zh">拿城市地图打比方：除了两点之间的距离，路网上有没有环形路线也很重要。从一个地方出发，不走回头路，最后绕回起点。环多而紧凑，说明路网密集；环大而松散，说明路网稀疏。</span>
+    <span class="en">On a city map, besides the distance between two points, it matters whether the road network contains loops. Start somewhere, never retrace your steps, and end up back at the start. Many tight loops mean a dense network; few loose loops mean a sparse one.</span>
+  </p>
+  <p>
+    <span class="zh">在圆点-连线网络地图上，用一种叫持久同调的计算方法扫描，它能系统地找出地图上所有的环，并测量每个环绕了多远。（持久同调是大学数学内容，这里直接看结果。）</span>
+    <span class="en">A computational method called persistent homology can scan the dots-and-lines network map, systematically locating every loop and measuring how far each one stretches. (Persistent homology is university-level math; we skip the details and go straight to results.)</span>
+  </p>
+
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:20px 0">
+    <div style="flex:1;min-width:200px;max-width:280px;background:#f3e5f5;border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:700;color:#7b1fa2;margin:4px 0">96.8%</div>
+      <div style="font-size:13px;color:#666">
+        <span class="zh">的功能类型，在最少门数的电路地图中就能找到环形路线</span>
+        <span class="en">of function types already have loop routes in their minimum-gate circuit map</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:200px;max-width:280px;background:#e8eaf6;border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:700;color:#283593;margin:4px 0">&minus;0.837</div>
+      <div style="font-size:13px;color:#666">
+        <span class="zh">功能越复杂，环占地图的比例越小（用环的大小除以地图整体大小来消除长度影响）</span>
+        <span class="en">more complex = loops cover a smaller fraction of the map (loop size divided by overall map size to remove length effect)</span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <span class="zh">&minus;0.837 是一个很强的负相关（负数表示一个变大、另一个就变小）。复杂功能的地图整体更大，环自然也更大。但把环的大小除以整张地图上最远两点的距离，复杂功能的占比反而更小，环相对于地图收紧了。打个比方：复杂功能的电路地图像<b>老城区</b>，街道弯绕，到处都是紧凑的环形路线；简单功能的地图更像<b>郊区</b>，路线松散，环大而稀疏。</span>
+    <span class="en">&minus;0.837 is a strong negative correlation (negative means "as one goes up, the other goes down"). Complex functions have bigger maps overall, so their raw loops are bigger too. But divide each loop's size by the farthest distance between any two points on the whole map (what percentage of the map does the loop span?), and complex functions show a smaller percentage: the loops shrink relative to the map. Complex functions' circuit maps resemble an <b>old town</b> with winding streets and tight loops everywhere; simple functions' maps resemble <b>suburbs</b> with loose roads and large loops.</span>
+  </p>
+  <div class="highlight">
+    <span class="zh">复杂度不仅决定能不能互相改造、差异有多大，还改变了电路地图的整体形状。功能越复杂，地图越紧凑。</span>
+    <span class="en">Complexity also reshapes the map's overall structure. More complex functions produce tighter, more compact maps.</span>
+  </div>
+
+  <div class="think-box" onclick="this.classList.toggle('open')">
+    <span class="zh"><b>想一想：</b>为什么不能直接比较环的大小？（点击展开）</span>
+    <span class="en"><b>Think:</b> Why can't we just compare loop sizes directly? (Click to reveal)</span>
+    <div class="answer">
+      <span class="zh">和之前的问题一样，复杂功能的描述更长，地图本身就更大，环自然也更大。所以我们把环的大小除以整张地图上最远两点的距离，得到一个比例（百分比）。大地图上环大是正常的，关键看它占整张地图的百分之几。去掉地图大小的影响后，&minus;0.837 说明这是真正的形状变化，不是假象。</span>
+      <span class="en">Complex functions have longer descriptions and therefore bigger maps, so raw loop sizes are naturally larger. We divide each loop's size by the farthest distance between any two points on the entire map, getting a <b>proportion</b> (percentage). Big loops on a big map are expected; what matters is what fraction of the map the loop spans. After removing the map-size effect, &minus;0.837 confirms genuine shape change, not an illusion.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 6: Summary -->
+<div class="card">
+  <h2>
+    <span class="zh">总结：五个发现</span>
+    <span class="en">Summary: Five Discoveries</span>
+  </h2>
+  <p>
+    <span class="zh">我们对 4 输入数字电路的全部 222 种基本功能做了完整的数学分析，发现五个核心结论（C = 最少门数）：</span>
+    <span class="en">We performed a complete mathematical analysis of all 222 four-input circuit function types and found five core results (C = minimum gate count):</span>
+  </p>
+  <div class="key-point" style="line-height:2">
+    <span class="zh">
+      <b>1. 三阶段结构</b> — 可互相改造（0&ndash;1 个门）&rarr; 完全孤立（2 个门）&rarr; 碎片化（3 个门以上）<br>
+      <b>2. 刚性定理</b> — 2 个门时的完全孤立是数学必然，对 3 个以上的任意输入数量都成立<br>
+      <b>3. 一门解冻</b> — 多一个门，222 种中的 220 种（99.1%）就能互相改造了<br>
+      <b>4. 距离与数量不对称</b> — 电路差异随复杂度增大，但电路数量和复杂度无关（去掉长度影响后关联为 0.338）<br>
+      <b>5. 环形路线收紧</b> — 96.8% 的功能有环形改造路线，功能越复杂环越紧（去掉长度影响后 &minus;0.837）
+    </span>
+    <span class="en">
+      <b>1. Three-phase structure</b> — rewirable (0&ndash;1 gates) &rarr; totally isolated (2 gates) &rarr; fragmented (3+ gates)<br>
+      <b>2. Rigidity theorem</b> — total isolation at 2 gates is a proven mathematical rule for any number of inputs (3 or more)<br>
+      <b>3. One-gate thawing</b> — one extra gate lets 220 of 222 types (99.1%) become rewirable<br>
+      <b>4. Distance vs. count</b> — circuit differences grow with complexity, but circuit count does not (after removing length effect: 0.338)<br>
+      <b>5. Loop tightening</b> — 96.8% of function types have loop routes; loops get tighter with complexity (after removing length effect: &minus;0.837)
+    </span>
+  </div>
+  <p>
+    <span class="zh">这些结论来自对 20 万个以上电路的逐一检查（222 种功能类型，每种在不同门数下分别分析）。追求极致精简，系统完全僵死；多一点余量，灵活性立刻回来。这个规律不仅适用于电路。排课表时，每个时间段都被填满，想调一节课就牵一发动全身；规划快递路线时，每段路都是最短路径的一部分，改一段就绕远。凡是在大量可能方案中追求最优解的问题，都可能遵循「最优即冻住」的逻辑。</span>
+    <span class="en">These conclusions come from checking over 200,000 circuits one by one (222 function types, each analyzed at different gate budgets). Push to the absolute minimum and the system locks up; a small amount of slack brings flexibility right back. This pattern extends beyond circuits. In class scheduling, every time slot is filled, so moving one class triggers a chain reaction. In delivery routing, every road is part of the shortest path, so rerouting one segment makes the whole trip longer. Any problem that seeks an optimum among vast possibilities may follow the same "optimum means frozen" logic.</span>
+  </p>
   <p style="font-size:13px;color:#999;margin-top:12px">
-    <span class="zh">以上结论已在全部 222 种 4 输入功能上完整验证。我们还抽样测试了更大的 5 输入电路（约 616,000 种类型），结果一致——这个规律不太可能只是 4 输入的特例。</span>
-    <span class="en">These conclusions have been fully verified across all 222 four-input function types. We also sampled from the much larger set of 5-input circuits (~616,000 types), with consistent results. This pattern is unlikely to be a quirk of 4-input circuits alone.</span>
+    <span class="zh">以上结论在全部 222 种 4 输入功能上完整验证。我们还抽样检验了更大的 5 输入电路（约 61 万种类型），结果一致。</span>
+    <span class="en">All conclusions fully verified across all 222 four-input function types. We also spot-checked larger 5-input circuits (about 616,000 types) and found consistent results.</span>
   </p>
 </div>
 
@@ -629,10 +965,10 @@ graph LR
 
 <footer>
   A. C. Li &mdash;
-  <span class="zh">小型布尔函数电路-SAT解空间的连通性二分现象</span>
-  <span class="en">A Connectivity Dichotomy in the Solution Space of Circuit-SAT for Small Boolean Functions</span>
+  <span class="zh">电路-SAT 解空间的几何：刚性、连通性阈值和拓扑结构</span>
+  <span class="en">The Geometry of Circuit-SAT Solution Spaces: Rigidity, Connectivity Thresholds, and Topological Structure</span>
   <br>
-  <a href="https://doi.org/10.5281/zenodo.19132019" target="_blank">Data &amp; Code (Zenodo)</a>
+  <a href="https://doi.org/10.5281/zenodo.19132018" target="_blank">Data &amp; Code (Zenodo)</a>
   &nbsp;|&nbsp;
   <a href="https://github.com/crabsatellite/circuit-sat-geometry" target="_blank">GitHub</a>
 </footer>
@@ -975,9 +1311,51 @@ function setWaffle(state){
   },last));
   var wn=document.getElementById('waffleNote');
   wn.innerHTML=state
-    ?'<span class="zh">\u4EC5\u4EC5\u591A\u4E00\u4E2A\u95E8\uFF0C<b>216</b> \u79CD\u5C31\u89E3\u51BB\u4E86\uFF0899%\uFF09\u3002\u5269\u4E0B <b>2</b> \u79CD\u662F\u6700\u590D\u6742\u7684\u7C7B\u578B\uFF08\u9700\u8981 8 \u4E2A\u95E8\uFF09\uFF0C\u89E3\u51BB\u9700\u8981\u591A\u4E24\u4E2A\u95E8\u3002</span><span class="en">With just one extra gate, <b>216</b> types thaw (99%). The remaining <b>2</b> are the most complex (needing 8 gates) and require two extra gates to thaw.</span>'
+    ?'<span class="zh">\u4EC5\u4EC5\u591A\u4E00\u4E2A\u95E8\uFF0C<b>216</b> \u79CD\u4ECE\u51BB\u4F4F\u53D8\u4E3A\u53EF\u6539\u9020\u3002\u52A0\u4E0A\u539F\u672C\u5C31\u5F88\u7B80\u5355\u7684 4 \u79CD\uFF08\u7070\u8272\uFF09\uFF0C\u5171 <b>220</b> \u79CD\uFF08222 \u4E2D\u7684 99.1%\uFF09\u73B0\u5728\u53EF\u4EE5\u6539\u9020\u3002\u5269\u4E0B <b>2</b> \u79CD\u662F\u6700\u590D\u6742\u7684\u7C7B\u578B\uFF08\u9700\u8981 8 \u4E2A\u95E8\uFF09\uFF0C\u89E3\u51BB\u9700\u8981\u591A\u4E24\u4E2A\u95E8\u3002</span><span class="en">With just one extra gate, <b>216</b> types thaw from frozen to rewirable. Together with the 4 types that were always simple (gray), <b>220</b> of 222 (99.1%) are now rewirable. The remaining <b>2</b> are the most complex (needing 8 gates) and require two extra gates to thaw.</span>'
     :'<span class="zh">\u6392\u9664\u592A\u7B80\u5355\u7684 4 \u79CD\u4E4B\u540E\uFF0C\u5269\u4E0B\u7684 218 \u79CD\u5728\u6700\u5C11\u95E8\u65F6<b>\u5168\u90E8</b>\u51BB\u4F4F\uFF0C\u65E0\u4E00\u4F8B\u5916\u3002</span><span class="en">Excluding the 4 simplest types, the remaining 218 are <b>all</b> frozen at minimum gate count, without exception.</span>';
 }
+
+// Phase Explorer
+(function(){
+  var pd=[
+    {dots:[[50,35]],edges:[],color:'#66bb6a',card:0,
+     zh:{s:'\u8FDE\u901A',d:'C = 0 \u4E0D\u9700\u8981\u95E8\uFF08\u8F93\u51FA\u76F4\u63A5\u7B49\u4E8E\u67D0\u4E2A\u8F93\u5165\uFF09\u3002\u53EA\u6709\u4E00\u79CD\u7535\u8DEF\uFF0C\u5929\u7136\u8FDE\u901A\u3002'},
+     en:{s:'Connected',d:'C = 0 needs no gates (output equals an input directly). Just one circuit \u2014 trivially connected.'}},
+    {dots:[[50,12],[88,40],[50,68],[12,40]],edges:[[0,1],[1,2],[2,3],[3,0],[0,2],[1,3]],color:'#66bb6a',card:0,
+     zh:{s:'\u5B8C\u5168\u8FDE\u901A',d:'1 \u4E2A\u95E8\u53EA\u7528 2 \u4E2A\u8F93\u5165\uFF0C\u5269\u4E0B 2 \u4E2A\u7A7A\u95F2\u3002\u5229\u7528\u7A7A\u95F2\u53D8\u91CF\u63A5\u529B\u6362\u63A5\u7EBF\uFF0C\u4EFB\u610F\u4E24\u4E2A\u7535\u8DEF\u90FD\u8D70\u5F97\u901A\u3002'},
+     en:{s:'Fully connected',d:'1 gate uses only 2 of 4 inputs, leaving 2 idle. Relay through idle variables to rewire step by step \u2014 any two circuits can reach each other.'}},
+    {dots:[[18,22],[50,12],[82,22],[32,58],[68,58]],edges:[],color:'#ef5350',card:1,
+     zh:{s:'\u5B8C\u5168\u5B64\u7ACB',d:'2 \u4E2A\u95E8\u521A\u597D\u7528\u5B8C\u6240\u6709\u8D44\u6E90\uFF0C\u6CA1\u6709\u7A7A\u95F2\u53D8\u91CF\u3002\u52A8\u4EFB\u4F55\u4E00\u4E2A\u95E8\uFF0C\u8F93\u51FA\u5FC5\u7136\u51FA\u9519\u3002\u6BCF\u4E2A\u7535\u8DEF\u90FD\u662F\u5B64\u5C9B\u3002'},
+     en:{s:'Totally isolated',d:'2 gates use up all available resources \u2014 no idle variables. Change any single gate and the output breaks. Every circuit is an island.'}},
+    {dots:[[10,22],[30,10],[20,52],[70,22],[90,10],[80,52]],edges:[[0,1],[1,2],[0,2],[3,4],[4,5],[3,5]],color:'#ffa726',card:2,
+     zh:{s:'\u788E\u7247\u5316',d:'3 \u4E2A\u4EE5\u4E0A\u7684\u95E8\uFF0C\u6709\u4E00\u5B9A\u4F59\u91CF\u4F46\u4E0D\u591F\u5168\u90E8\u8FDE\u901A\u3002\u7535\u8DEF\u5206\u6210\u51E0\u4E2A\u5C0F\u7FA4\u843D\uFF1A\u7FA4\u843D\u5185\u53EF\u4EE5\u6539\u9020\uFF0C\u7FA4\u843D\u4E4B\u95F4\u8D70\u4E0D\u901A\u3002'},
+     en:{s:'Fragmented',d:'3+ gates provide some slack, but not enough for full connectivity. Circuits split into clusters: rewirable within, but no path between.'}}
+  ];
+  var colors=['pe-green','pe-green','pe-red','pe-orange'];
+  window.showPhase=function(p){
+    document.querySelectorAll('.pe-tab').forEach(function(t){t.className='pe-tab';});
+    document.querySelectorAll('.pe-tab')[p].classList.add('pe-tab',colors[p]);
+    var cards=document.querySelectorAll('.phase-card');
+    cards.forEach(function(c,i){
+      c.style.opacity=(i===pd[p].card)?'1':'0.35';
+      c.style.transform=(i===pd[p].card)?'scale(1.04)':'scale(0.97)';
+    });
+    var d=pd[p],L=document.body.classList.contains('lang-zh')?'zh':'en';
+    var svg='<svg viewBox="0 0 100 70" preserveAspectRatio="xMidYMid meet" style="width:100%;max-width:280px;height:120px;display:block;margin:0 auto">';
+    d.edges.forEach(function(e){
+      var a=d.dots[e[0]],b=d.dots[e[1]];
+      svg+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="'+d.color+'" stroke-width="1.5" stroke-opacity="0.4"/>';
+    });
+    d.dots.forEach(function(dot){
+      svg+='<circle cx="'+dot[0]+'" cy="'+dot[1]+'" r="5.5" fill="'+d.color+'" stroke="#fff" stroke-width="1.5"/>';
+    });
+    svg+='</svg>';
+    document.getElementById('peView').innerHTML=svg;
+    var sc=['#2e7d32','#2e7d32','#c62828','#e65100'];
+    document.getElementById('peInfo').innerHTML='<div class="pe-status" style="color:'+sc[p]+'">'+d[L].s+'</div><div>'+d[L].d+'</div>';
+  };
+  showPhase(0);
+})();
 
 // Init mermaid
 mermaid.initialize({startOnLoad:true,theme:'neutral',flowchart:{curve:'basis'}});
