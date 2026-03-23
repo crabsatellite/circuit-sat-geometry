@@ -1,6 +1,6 @@
 # Circuit-SAT Solution-Space Geometry
 
-Code and data for: **"A Complete Computational Survey of Solution-Space Geometry in Circuit-SAT for 4-Input Boolean Functions"**
+Code and data for: **"The Geometry of Circuit-SAT Solution Spaces: Rigidity, Connectivity Thresholds, and Topological Structure"**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19132019.svg)](https://doi.org/10.5281/zenodo.19132019)
 
@@ -18,7 +18,7 @@ This repository contains the complete computational pipeline for surveying the s
 ├── configs/                # Pipeline configuration
 ├── src/                    # Computational pipeline (Phases 1-10) + figure generation
 ├── data/                   # Pre-computed results (JSON)
-└── figures/                # Generated figures (after running scripts)
+└── figures/                # Publication figures (PDF)
 ```
 
 ## Quick Start
@@ -93,8 +93,8 @@ Solution matrices (`.npy`) and persistence diagrams are not included due to size
 ```bibtex
 @misc{li2026circuitsat,
   author       = {Li, Alex Chengyu},
-  title        = {A Complete Computational Survey of Solution-Space Geometry
-                  in Circuit-SAT for 4-Input Boolean Functions},
+  title        = {The Geometry of Circuit-SAT Solution Spaces:
+                  Rigidity, Connectivity Thresholds, and Topological Structure},
   year         = {2026},
   doi          = {10.5281/zenodo.19132019},
   publisher    = {Zenodo},
